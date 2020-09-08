@@ -13,7 +13,7 @@ const Login = (props) => {
 
   useEffect(() => {
     if (auth.isAuth) {
-      props.history.push("/");
+      props.history.push("/dashboard");
     }
   }, [auth, props]);
 

@@ -10,7 +10,7 @@ const Dashboard = (props) => {
     if (auth.isAuth) {
       setName(auth.data.name);
     } else {
-      props.history.push("/login");
+      props.history.push("/");
     }
   }, [auth, props]);
 

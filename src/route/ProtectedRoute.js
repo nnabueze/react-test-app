@@ -7,11 +7,7 @@ const ProtectedRoute = (props) => {
   const Component = props.component;
   const isAuthenticated = auth.isAuth;
 
-  return isAuthenticated ? (
-    <Component />
-  ) : (
-    <Redirect to={{ pathname: "/login" }} />
-  );
+  return isAuthenticated ? <Component /> : <Redirect to={{ pathname: "/" }} />;
 };
 
 export default ProtectedRoute;
