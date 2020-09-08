@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILED } from "../constants";
+import { LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from "../constants";
 
 export const AuthActionSuccess = (payload) => {
   return {
@@ -11,5 +11,11 @@ export const AuthActionFailed = (payload) => {
   return {
     type: LOGIN_FAILED,
     payload: payload,
+  };
+};
+
+export const LogoutAction = () => {
+  return {
+    type: LOGOUT,
   };
 };

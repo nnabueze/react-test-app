@@ -1,22 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { LoginService } from "../../services/AuthService";
 import { AuthContext } from "../../context/AuthContext";
 import { AuthActionSuccess } from "../../actions/AuthAction";
 
 const Login = (props) => {
-  const { dispatch } = useContext(AuthContext);
+  const { dispatch, auth } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setisLoading] = useState(false);
   const [isError, setisError] = useState(false);
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    if (auth.isAuth) {
+      props.history.push("/");
+    }
+  }, [auth, props]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setisLoading(true);
-
-    setUserName("");
-    setPassword("");
 
     const response = await LoginService({
       email: userName,
@@ -27,11 +30,15 @@ const Login = (props) => {
   };
 
   const responseDisplay = (response) => {
+    setUserName("");
+    setPassword("");
+
     if (typeof response !== "undefined") {
       setisLoading(false);
 
       if (response.status) {
         dispatch(AuthActionSuccess(response));
+        props.history.push("/");
       } else {
         setisError(true);
         setMessage(response.message);
