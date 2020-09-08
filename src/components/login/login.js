@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LoginService } from "../../services/AuthService";
+import { AuthContext } from "../../context/AuthContext";
 
-const Login = (props) => {
+const Login = (prop) => {
+  const { Authenticate } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    // async function anyNameFunction() {
+    //   return await LoginService(login);
+    // }
+    // anyNameFunction().then((res) => console.log(res));
+    //console.log(res);
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setUserName("");
+    setPassword("");
 
-    console.log(userName, password);
+    async function anyNameFunction() {
+      return await LoginService({
+        email: userName,
+        password: password,
+      });
+    }
+    anyNameFunction().then((res) => console.log(res));
   };
 
   return (

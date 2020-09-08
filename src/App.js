@@ -1,11 +1,14 @@
 import React from "react";
 import "./App.css";
 import Login from "./components/login/login";
+import AuthContextProvider from "./context/AuthContext";
 
 function App() {
   return (
     <div>
-      <Login />
+      <AuthContextProvider>
+        <Login />
+      </AuthContextProvider>
     </div>
   );
 }
