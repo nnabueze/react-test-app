@@ -1,32 +1,49 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { LoginService } from "../../services/AuthService";
 import { AuthContext } from "../../context/AuthContext";
+import { AuthActionSuccess } from "../../actions/AuthAction";
 
-const Login = (prop) => {
-  const { Authenticate } = useContext(AuthContext);
+const Login = (props) => {
+  const { dispatch } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setisLoading] = useState(false);
+  const [isError, setisError] = useState(false);
+  const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    // async function anyNameFunction() {
-    //   return await LoginService(login);
-    // }
-    // anyNameFunction().then((res) => console.log(res));
-    //console.log(res);
-  });
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setisLoading(true);
+
     setUserName("");
     setPassword("");
 
-    async function anyNameFunction() {
-      return await LoginService({
-        email: userName,
-        password: password,
-      });
+    const response = await LoginService({
+      email: userName,
+      password: password,
+    });
+
+    responseDisplay(response);
+  };
+
+  const responseDisplay = (response) => {
+    if (typeof response !== "undefined") {
+      setisLoading(false);
+
+      if (response.status) {
+        dispatch(AuthActionSuccess(response));
+      } else {
+        setisError(true);
+        setMessage(response.message);
+      }
+      //redirect
+    } else {
+      setisLoading(false);
+
+      setisError(true);
+
+      setMessage("Network Error...Kindly check network");
     }
-    anyNameFunction().then((res) => console.log(res));
   };
 
   return (
@@ -38,6 +55,11 @@ const Login = (prop) => {
               <img alt="" src="../assets/img/logo-2.png" />
             </span>
             <span className="login100-form-title p-b-34 p-t-27">Log in</span>
+            {isError && (
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            )}
             <div
               className="wrap-input100 validate-input"
               data-validate="Enter username"
@@ -78,7 +100,16 @@ const Login = (prop) => {
               </label>
             </div>
             <div className="container-login100-form-btn">
-              <button className="login100-form-btn">Login</button>
+              <button className="login100-form-btn" disabled={isLoading}>
+                {isLoading && (
+                  <i
+                    className="fa fa-refresh fa-spin"
+                    style={{ marginRight: "5px" }}
+                  />
+                )}
+                {isLoading && <span>Waiting</span>}
+                {!isLoading && <span>Login</span>}
+              </button>
             </div>
             <div className="text-center p-t-30">
               <a className="txt1" href="forgot_password.html">

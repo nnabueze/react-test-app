@@ -3,6 +3,7 @@ import { LOGIN_SUCCESS, LOGIN_FAILED } from "../constants";
 export const AuthReducer = (state, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         isAuth: action.payload.status,
