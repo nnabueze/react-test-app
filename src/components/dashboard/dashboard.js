@@ -15,7 +15,6 @@ const Dashboard = (props) => {
   }, [auth, props]);
 
   const onClick = () => {
-    console.log("checking");
     dispatch(LogoutAction());
   };
 
