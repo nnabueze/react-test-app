@@ -12,8 +12,10 @@ const Login = (props) => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (auth.isAuth) {
-      props.history.push("/dashboard");
+    if (auth !== null) {
+      if (auth.isAuth) {
+        props.history.push("/dashboard");
+      }
     }
   }, [auth, props]);
 
