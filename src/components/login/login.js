@@ -15,7 +15,8 @@ const Login = (props) => {
   useEffect(() => {
     if (auth !== null) {
       if (auth.isAuth) {
-        props.history.push("/dashboard");
+        //props.history.push("/dashboard");
+        window.location.href = "/dashboard";
       }
     }
   }, [auth, props]);

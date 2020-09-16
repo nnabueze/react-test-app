@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const TopNav = ({ logout }) => {
+const TopNav = ({ logout, name }) => {
   return (
     <nav className="navbar fixed-top">
       <div className="d-flex align-items-center navbar-left">
-        <Link to="#" className="menu-button d-none d-md-block">
+        <Link to="/dashboard" className="menu-button d-none d-md-block">
           <svg
             className="main"
             xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ const TopNav = ({ logout }) => {
           </svg>
         </Link>
         <Link
-          to="#"
+          to="/dashboard"
           className="menu-button-mobile d-xs-block d-sm-block d-md-none"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 17">
@@ -79,27 +79,27 @@ const TopNav = ({ logout }) => {
               className="dropdown-menu dropdown-menu-right mt-3  position-absolute"
               id="iconMenuDropdown"
             >
-              <Link to="#" className="icon-menu-item">
+              <Link to="/dashboard" className="icon-menu-item">
                 <i className="iconsminds-equalizer d-block" />
                 <span>Settings</span>
               </Link>
-              <Link to="#" className="icon-menu-item">
+              <Link to="/dashboard" className="icon-menu-item">
                 <i className="iconsminds-male-female d-block" />
                 <span>Users</span>
               </Link>
-              <Link to="#" className="icon-menu-item">
+              <Link to="/dashboard" className="icon-menu-item">
                 <i className="iconsminds-puzzle d-block" />
                 <span>Components</span>
               </Link>
-              <Link TO="#" className="icon-menu-item">
+              <Link to="/dashboard" className="icon-menu-item">
                 <i className="iconsminds-bar-chart-4 d-block" />
                 <span>Profits</span>
               </Link>
-              <Link TO="#" className="icon-menu-item">
+              <Link to="/dashboard" className="icon-menu-item">
                 <i className="iconsminds-file d-block" />
                 <span>Surveys</span>
               </Link>
-              <Link to="#" className="icon-menu-item">
+              <Link to="/dashboard" className="icon-menu-item">
                 <i className="iconsminds-suitcase d-block" />
                 <span>Tasks</span>
               </Link>
@@ -123,7 +123,7 @@ const TopNav = ({ logout }) => {
             >
               <div className="scroll">
                 <div className="d-flex flex-row mb-3 pb-3 border-bottom">
-                  <Link to="#">
+                  <Link to="/dashboard">
                     <img
                       src="img/profiles/l-2.jpg"
                       alt="Notification"
@@ -131,7 +131,7 @@ const TopNav = ({ logout }) => {
                     />
                   </Link>
                   <div className="pl-3">
-                    <Link to="#">
+                    <Link to="/dashboard">
                       <p className="font-weight-medium mb-1">
                         Joisse Kaycee just sent a new comment!
                       </p>
@@ -142,7 +142,7 @@ const TopNav = ({ logout }) => {
                   </div>
                 </div>
                 <div className="d-flex flex-row mb-3 pb-3 border-bottom">
-                  <Link to="#">
+                  <Link to="/dashboard">
                     <img
                       src="img/notifications/1.jpg"
                       alt="Notification"
@@ -150,7 +150,7 @@ const TopNav = ({ logout }) => {
                     />
                   </Link>
                   <div className="pl-3">
-                    <Link to="#">
+                    <Link to="/dashboard">
                       <p className="font-weight-medium mb-1">
                         1 item is out of stock!
                       </p>
@@ -161,7 +161,7 @@ const TopNav = ({ logout }) => {
                   </div>
                 </div>
                 <div className="d-flex flex-row mb-3 pb-3 border-bottom">
-                  <Link to="#">
+                  <Link to="/dashboard">
                     <img
                       src="img/notifications/2.jpg"
                       alt="Notification"
@@ -169,7 +169,7 @@ const TopNav = ({ logout }) => {
                     />
                   </Link>
                   <div className="pl-3">
-                    <Link to="#">
+                    <Link to="/dashboard">
                       <p className="font-weight-medium mb-1">
                         New order received! It is total $147,20.
                       </p>
@@ -180,7 +180,7 @@ const TopNav = ({ logout }) => {
                   </div>
                 </div>
                 <div className="d-flex flex-row mb-3 pb-3 ">
-                  <Link to="#">
+                  <Link to="/dashboard">
                     <img
                       src="img/notifications/3.jpg"
                       alt="Notification"
@@ -188,7 +188,7 @@ const TopNav = ({ logout }) => {
                     />
                   </Link>
                   <div className="pl-3">
-                    <Link to="#">
+                    <Link to="/dashboard">
                       <p className="font-weight-medium mb-1">
                         3 items just added to wish list by a user!
                       </p>
@@ -218,13 +218,13 @@ const TopNav = ({ logout }) => {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span className="name">Sarah Kortney</span>
+            <span className="name">{name}</span>
             <span>
               <img alt="Profile " src="img/profiles/l-1.jpg" />
             </span>
           </button>
           <div className="dropdown-menu dropdown-menu-right mt-3">
-            <Link className="dropdown-item" to="#">
+            <Link className="dropdown-item" to="/dashboard">
               Account
             </Link>
             <button onClick={logout} className="dropdown-item">
