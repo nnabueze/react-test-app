@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { LoginService } from "../../services/AuthService";
 import { AuthContext } from "../../context/AuthContext";
 import { AuthActionSuccess } from "../../actions/AuthAction";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const { dispatch, auth } = useContext(AuthContext);
@@ -40,7 +41,7 @@ const Login = (props) => {
 
       if (response.status) {
         dispatch(AuthActionSuccess(response));
-        props.history.push("/");
+        props.history.push("/dashboard");
       } else {
         setisError(true);
         setMessage(response.message);
@@ -56,78 +57,93 @@ const Login = (props) => {
   };
 
   return (
-    <div className="limiter">
-      <div className="container-login100 page-background">
-        <div className="wrap-login100">
-          <form className="login100-form validate-form" onSubmit={handleSubmit}>
-            <span className="login100-form-logo">
-              <img alt="" src="../assets/img/logo-2.png" />
-            </span>
-            <span className="login100-form-title p-b-34 p-t-27">Log in</span>
-            {isError && (
-              <div className="alert alert-danger" role="alert">
-                {message}
+    <div className="background show-spinner no-footer">
+      <div className="fixed-background" />
+      <main className="default-transition">
+        <div className="container">
+          <div className="row h-100">
+            <div className="col-12 col-md-10 mx-auto my-auto">
+              <div className="card auth-card">
+                <div className="position-relative image-side ">
+                  <p className=" text-white h2">MAGIC IS IN THE DETAILS</p>
+                  <p className="white mb-0">
+                    Please use your credentials to login.
+                    <br />
+                    If you are not a member, please
+                    <Link to="" className="white">
+                      register
+                    </Link>{" "}
+                    .
+                  </p>
+                </div>
+                <div className="form-side">
+                  <Link to="/dashboard">
+                    <h2 style={{ fontWeight: "bold", fontSize: 30 }}>
+                      ERCAS SSO
+                    </h2>
+                  </Link>
+                  {isError && (
+                    <div
+                      className="alert alert-warning alert-dismissible fade show rounded mb-0"
+                      role="alert"
+                    >
+                      <strong>Error !&nbsp;&nbsp;</strong> {message}
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="alert"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  )}
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <h6 className="mb-4">Login</h6>
+                  <form onSubmit={handleSubmit}>
+                    <label className="form-group has-float-label mb-4">
+                      <input
+                        className="form-control"
+                        value={userName}
+                        name="username"
+                        onChange={(e) => setUserName(e.target.value)}
+                      />
+                      <span>E-mail</span>
+                    </label>
+                    <label className="form-group has-float-label mb-4">
+                      <input
+                        className="form-control"
+                        value={password}
+                        name="pass"
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                      />
+                      <span>Password</span>
+                    </label>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <Link to="#">Forget password?</Link>
+                      <button
+                        className="btn btn-primary btn-lg btn-shadow"
+                        type="submit"
+                        disabled={isLoading}
+                      >
+                        {isLoading && (
+                          <i
+                            className="fa fa-refresh fa-spin"
+                            style={{ marginRight: "5px", color: "white" }}
+                          />
+                        )}
+                        {isLoading && <span>&nbsp;&nbsp;WAITING</span>}
+                        {!isLoading && <span>LOGIN</span>}
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
-            )}
-            <div
-              className="wrap-input100 validate-input"
-              data-validate="Enter username"
-            >
-              <input
-                className="input100"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                type="text"
-                name="username"
-                placeholder="Username"
-              />
-              <span className="focus-input100" data-placeholder="" />
             </div>
-            <div
-              className="wrap-input100 validate-input"
-              data-validate="Enter password"
-            >
-              <input
-                className="input100"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                name="pass"
-                placeholder="Password"
-              />
-              <span className="focus-input100" data-placeholder="" />
-            </div>
-            <div className="contact100-form-checkbox">
-              <input
-                className="input-checkbox100"
-                id="ckb1"
-                type="checkbox"
-                name="remember-me"
-              />
-              <label className="label-checkbox100" htmlFor="ckb1">
-                Remember me
-              </label>
-            </div>
-            <div className="container-login100-form-btn">
-              <button className="login100-form-btn" disabled={isLoading}>
-                {isLoading && (
-                  <i
-                    className="fa fa-refresh fa-spin"
-                    style={{ marginRight: "5px" }}
-                  />
-                )}
-                {isLoading && <span>Waiting</span>}
-                {!isLoading && <span>Login</span>}
-              </button>
-            </div>
-            <div className="text-center p-t-30">
-              <a className="txt1" href="forgot_password.html">
-                Forgot Password?
-              </a>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
