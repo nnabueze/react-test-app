@@ -5,6 +5,7 @@ import AuthContextProvider from "./context/AuthContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./components/dashboard/dashboard";
 import ProtectedRoute from "./route/ProtectedRoute";
+import ErrorPage from "./components/error/error";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Login} />
             <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-            <Route path="" component={Login} />
+            <Route path="" component={ErrorPage} />
           </Switch>
         </Router>
       </AuthContextProvider>

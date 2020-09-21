@@ -17,7 +17,7 @@ export const AuthReducer = (state, action) => {
         data: {},
       };
     case LOGIN_FAILED:
-      console.log("yes");
+      //console.log("yes");
       return {
         ...state,
         isAuth: false,
