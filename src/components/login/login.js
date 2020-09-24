@@ -19,7 +19,7 @@ const Login = (props) => {
         window.location.href = "/dashboard";
       }
     }
-  }, [auth, props]);
+  }, [auth]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +43,7 @@ const Login = (props) => {
       if (response.status) {
         dispatch(AuthActionSuccess(response));
         props.history.push("/dashboard");
+        //window.location.href = "/dashboard";
       } else {
         setisError(true);
         setMessage(response.message);

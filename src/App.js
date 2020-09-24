@@ -3,7 +3,7 @@ import "./App.css";
 import Login from "./components/login/login";
 import AuthContextProvider from "./context/AuthContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Dashboard from "./components/dashboard/dashboard";
+import Dashboard from "./components/dashboard/dashboardPage";
 import ProtectedRoute from "./route/ProtectedRoute";
 import ErrorPage from "./components/error/error";
 

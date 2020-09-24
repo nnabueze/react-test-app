@@ -13,10 +13,12 @@ const Dashboard = (props) => {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    if (auth.isAuth) {
-      setName(auth.data.name);
-    } else {
-      props.history.push("/");
+    if (auth !== null) {
+      if (auth.isAuth) {
+        setName(auth.data.name);
+      } else {
+        props.history.push("/");
+      }
     }
   }, [auth, props]);
 
