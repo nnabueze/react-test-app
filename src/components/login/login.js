@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 const Login = (props) => {
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [setCookie] = useCookies(["user"]);
   const { dispatch, auth } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -42,6 +42,8 @@ const Login = (props) => {
     if (typeof response !== "undefined") {
       setisLoading(false);
 
+      //handleSetCookie(response);
+
       dispatch(AuthActionSuccess(response));
 
       window.location = "/dashboard";
@@ -54,12 +56,19 @@ const Login = (props) => {
     }
   };
 
-  const handleSetCookie = () => {
-    setCookie("user", "obydul", { path: "/" });
-  };
-
-  const handleRemoveCookie = () => {
-    removeCookie("user");
+  const handleSetCookie = (data) => {
+    const userData = {
+      id: data.id,
+      phone: data.phone,
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      otherNames: data.otherNames,
+      lastLoginDate: data.lastLoginDate,
+      token: data.token,
+    };
+    //const user = JSON.stringify(userData);
+    setCookie("user", "obydul", { domain: ".ercas.com.ng" });
   };
 
   return (

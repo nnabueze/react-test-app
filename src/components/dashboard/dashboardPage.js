@@ -7,8 +7,10 @@ import Footer from "../../shared/footer";
 import DashboardNavWidget from "./dashboardNavWidget";
 import UserCountWidget from "./userCountWidget";
 import LatestUserWidget from "./latestUserWidget";
+import { useCookies } from "react-cookie";
 
 const Dashboard = (props) => {
+  const [removeCookie] = useCookies(["user"]);
   const { auth, dispatch } = useContext(AuthContext);
   const [firstName, setfisrtName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -26,6 +28,10 @@ const Dashboard = (props) => {
 
   const onClick = () => {
     dispatch(LogoutAction());
+  };
+
+  const handleRemoveCookie = () => {
+    removeCookie("user");
   };
 
   return (
