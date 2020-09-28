@@ -3,8 +3,10 @@ import { LoginService } from "../../services/AuthService";
 import { AuthContext } from "../../context/AuthContext";
 import { AuthActionSuccess } from "../../actions/AuthAction";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Login = (props) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const { dispatch, auth } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -16,10 +18,10 @@ const Login = (props) => {
     if (auth !== null) {
       if (auth.isAuth) {
         //props.history.push("/dashboard");
-        window.location.href = "/dashboard";
+        window.location = "/dashboard";
       }
     }
-  }, [auth]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,15 +42,9 @@ const Login = (props) => {
     if (typeof response !== "undefined") {
       setisLoading(false);
 
-      if (response.status) {
-        dispatch(AuthActionSuccess(response));
-        props.history.push("/dashboard");
-        //window.location.href = "/dashboard";
-      } else {
-        setisError(true);
-        setMessage(response.message);
-      }
-      //redirect
+      dispatch(AuthActionSuccess(response));
+
+      window.location = "/dashboard";
     } else {
       setisLoading(false);
 
@@ -56,6 +52,14 @@ const Login = (props) => {
 
       setMessage("Network Error...Kindly check network");
     }
+  };
+
+  const handleSetCookie = () => {
+    setCookie("user", "obydul", { path: "/" });
+  };
+
+  const handleRemoveCookie = () => {
+    removeCookie("user");
   };
 
   return (
@@ -81,7 +85,9 @@ const Login = (props) => {
                 <div className="form-side">
                   <Link to="/dashboard">
                     <h2 style={{ fontWeight: "bold", fontSize: 30 }}>
-                      ERCAS SSO
+                      <span>
+                        <img src="/logo.png" alt="logo" />
+                      </span>
                     </h2>
                   </Link>
                   {isError && (

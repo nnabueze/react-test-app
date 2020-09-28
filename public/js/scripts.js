@@ -37,7 +37,7 @@ function loadStyle(href, callback) {
     Dropzone.autoDiscover = false;
   }
 
-  var themeColorsDom = /*html*/`
+  var themeColorsDom = /*html*/ `
   <div class="theme-colors">
     <div class="p-4">
     <p class="text-muted mb-2">Light Theme</p>
@@ -97,8 +97,7 @@ function loadStyle(href, callback) {
 </div>
 `;
 
-  $("body").append(themeColorsDom);
-
+  //$("body").append(themeColorsDom);
 
   /* Default Theme Color, Border Radius and  Direction */
   var theme = "dore.light.bluenavy.min.css";
@@ -124,7 +123,10 @@ function loadStyle(href, callback) {
   }
 
   $(".theme-color[data-theme='" + theme + "']").addClass("active");
-  $(".direction-radio[data-direction='" + direction + "']").attr("checked", true);
+  $(".direction-radio[data-direction='" + direction + "']").attr(
+    "checked",
+    true
+  );
   $(".radius-radio[data-radius='" + radius + "']").attr("checked", true);
   $("#switchDark").attr("checked", theme.indexOf("dark") > 0 ? true : false);
 
@@ -180,20 +182,14 @@ function loadStyle(href, callback) {
 
   $(".theme-button").on("click", function (event) {
     event.preventDefault();
-    $(this)
-      .parents(".theme-colors")
-      .toggleClass("shown");
+    $(this).parents(".theme-colors").toggleClass("shown");
   });
 
   $(document).on("click", function (event) {
     if (
       !(
-        $(event.target)
-          .parents()
-          .hasClass("theme-colors") ||
-        $(event.target)
-          .parents()
-          .hasClass("theme-button") ||
+        $(event.target).parents().hasClass("theme-colors") ||
+        $(event.target).parents().hasClass("theme-button") ||
         $(event.target).hasClass("theme-button") ||
         $(event.target).hasClass("theme-colors")
       )

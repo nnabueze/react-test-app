@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const TopNav = ({ logout, name }) => {
+const TopNav = ({ logout, firstName, lastName }) => {
   return (
     <nav className="navbar fixed-top">
       <div className="d-flex align-items-center navbar-left">
@@ -42,9 +42,12 @@ const TopNav = ({ logout, name }) => {
           </span>
         </div>
       </div>
-      <Link className="navbar-logo" to="Dashboard.Default.html">
-        <span className="logo d-none d-xs-block" />
-        <span className="logo-mobile d-block d-xs-none" />
+      <Link className="navbar-logo" to="/dashboard">
+        {/* <span className="logo d-none d-xs-block" />
+        <span className="logo-mobile d-block d-xs-none" /> */}
+        <span>
+          <img src="/logo.png" alt="logo" />
+        </span>
       </Link>
       <div className="navbar-right">
         <div className="header-icons d-inline-block align-middle">
@@ -218,7 +221,9 @@ const TopNav = ({ logout, name }) => {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span className="name">{name}</span>
+            <span className="name">
+              {firstName} {lastName}
+            </span>
             <span>
               <img alt="Profile " src="img/profiles/l-1.jpg" />
             </span>

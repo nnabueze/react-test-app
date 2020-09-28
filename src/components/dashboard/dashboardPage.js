@@ -10,12 +10,14 @@ import LatestUserWidget from "./latestUserWidget";
 
 const Dashboard = (props) => {
   const { auth, dispatch } = useContext(AuthContext);
-  const [name, setName] = useState("");
+  const [firstName, setfisrtName] = useState("");
+  const [lastName, setlastName] = useState("");
 
   useEffect(() => {
     if (auth !== null) {
       if (auth.isAuth) {
-        setName(auth.data.name);
+        setfisrtName(auth.data.firstName);
+        setlastName(auth.data.lastName);
       } else {
         props.history.push("/");
       }
@@ -28,7 +30,7 @@ const Dashboard = (props) => {
 
   return (
     <div id="app-container" className="menu-default show-spinner">
-      <TopNav logout={onClick} name={name} />
+      <TopNav logout={onClick} firstName={firstName} lastName={lastName} />
       <Menu />
       <main>
         <div className="container-fluid">

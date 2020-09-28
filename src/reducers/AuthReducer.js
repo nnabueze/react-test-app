@@ -5,9 +5,9 @@ export const AuthReducer = (state, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isAuth: action.payload.status,
+        isAuth: true,
         isError: false,
-        data: action.payload.data,
+        data: action.payload,
       };
     case LOGOUT:
       return {
@@ -17,7 +17,6 @@ export const AuthReducer = (state, action) => {
         data: {},
       };
     case LOGIN_FAILED:
-      //console.log("yes");
       return {
         ...state,
         isAuth: false,
