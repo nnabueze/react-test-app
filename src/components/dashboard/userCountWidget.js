@@ -48,6 +48,7 @@ const UserCountWidget = (props) => {
           </div>
         </div>
       </div>
+
       <div className="row">
         <div className="col-md-12 mb-4">
           <div className="card">

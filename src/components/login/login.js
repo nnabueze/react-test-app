@@ -3,10 +3,9 @@ import { LoginService } from "../../services/AuthService";
 import { AuthContext } from "../../context/AuthContext";
 import { AuthActionSuccess } from "../../actions/AuthAction";
 import { Link } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 
 const Login = (props) => {
-  const [setCookie] = useCookies(["user"]);
   const { dispatch, auth } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +41,7 @@ const Login = (props) => {
     if (typeof response !== "undefined") {
       setisLoading(false);
 
-      //handleSetCookie(response);
+      handleSetCookie(response);
 
       dispatch(AuthActionSuccess(response));
 
@@ -67,8 +66,10 @@ const Login = (props) => {
       lastLoginDate: data.lastLoginDate,
       token: data.token,
     };
-    //const user = JSON.stringify(userData);
-    setCookie("user", "obydul", { domain: ".ercas.com.ng" });
+
+    const user = JSON.stringify(userData);
+
+    Cookies.set("user", user, { domain: ".ercas.ng" });
   };
 
   return (

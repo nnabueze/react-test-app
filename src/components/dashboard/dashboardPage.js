@@ -7,10 +7,9 @@ import Footer from "../../shared/footer";
 import DashboardNavWidget from "./dashboardNavWidget";
 import UserCountWidget from "./userCountWidget";
 import LatestUserWidget from "./latestUserWidget";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 
 const Dashboard = (props) => {
-  const [removeCookie] = useCookies(["user"]);
   const { auth, dispatch } = useContext(AuthContext);
   const [firstName, setfisrtName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -27,11 +26,17 @@ const Dashboard = (props) => {
   }, [auth, props]);
 
   const onClick = () => {
+    handleRemoveCookie();
     dispatch(LogoutAction());
   };
 
+  const handleGetCookie = () => {
+    const user = JSON.parse(Cookies.get("user"));
+    return user;
+  };
+
   const handleRemoveCookie = () => {
-    removeCookie("user");
+    Cookies.remove("user", { domain: ".ercas.ng" });
   };
 
   return (
