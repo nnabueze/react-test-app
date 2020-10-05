@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signupService } from "../../services/AuthService";
+import AlertNotice from "../../shared/alert";
 
 const SignupPage = (props) => {
   const [firstName, setFirstName] = useState("");
@@ -76,38 +77,11 @@ const SignupPage = (props) => {
                       <img src="/logo.png" alt="logo" />
                     </span>
                   </Link>
-                  {isNotError && (
-                    <div
-                      className="alert alert-primary alert-dismissible fade show rounded mb-0"
-                      role="alert"
-                    >
-                      <strong>Success !&nbsp;&nbsp;</strong> {message}
-                      <button
-                        type="button"
-                        className="close"
-                        data-dismiss="alert"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                  )}
-                  {isError && (
-                    <div
-                      className="alert alert-warning alert-dismissible fade show rounded mb-0"
-                      role="alert"
-                    >
-                      <strong>Error !&nbsp;&nbsp;</strong> {message}
-                      <button
-                        type="button"
-                        className="close"
-                        data-dismiss="alert"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                  )}
+                  <AlertNotice
+                    message={message}
+                    isNotError={isNotError}
+                    isError={isError}
+                  />
                   <h6 className="mb-4">Register</h6>
                   <form onSubmit={handleSubmit}>
                     <label className="form-group has-float-label mb-4">
