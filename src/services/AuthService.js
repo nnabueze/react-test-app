@@ -15,17 +15,13 @@ export const LoginService = async (payload) => {
   }
 };
 
-export const signupService = (payload) => {
+export const signupService = async (payload) => {
   try {
-    let res = axios
-      .post(ACCOUNT_SIGNUP_URL, payload)
-      .then((response) => {
-        console.log('response');
-      })
-      .catch((error) => {
-        console.log('no response');
-      });
-  } catch (error) {
-    //console.log(error);
-  }
+    let res = await axios.post(ACCOUNT_SIGNUP_URL, payload);
+    if (res.status === 200) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {}
 };
