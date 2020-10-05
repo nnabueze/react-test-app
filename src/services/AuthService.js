@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ADMIN_LOGIN_URL } from "../constants";
+import { ACCOUNT_SIGNUP_URL, ADMIN_LOGIN_URL } from "../constants";
 
 export const LoginService = async (payload) => {
   try {
@@ -10,6 +10,21 @@ export const LoginService = async (payload) => {
     };
     let res = await axios.post(ADMIN_LOGIN_URL, formData);
     return res.data;
+  } catch (error) {
+    //console.log(error);
+  }
+};
+
+export const signupService = (payload) => {
+  try {
+    let res = axios
+      .post(ACCOUNT_SIGNUP_URL, payload)
+      .then((response) => {
+        console.log('response');
+      })
+      .catch((error) => {
+        console.log('no response');
+      });
   } catch (error) {
     //console.log(error);
   }

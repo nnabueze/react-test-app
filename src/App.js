@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./components/dashboard/dashboardPage";
 import ProtectedRoute from "./route/ProtectedRoute";
 import ErrorPage from "./components/error/error";
+import SignupPage from "./components/signup/signupPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={Login} />
+            <Route exact path="/register" component={SignupPage} />
             <ProtectedRoute exact path="/dashboard" component={Dashboard} />
             <Route path="" component={ErrorPage} />
           </Switch>

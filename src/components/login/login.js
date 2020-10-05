@@ -81,24 +81,21 @@ const Login = (props) => {
             <div className="col-12 col-md-10 mx-auto my-auto">
               <div className="card auth-card">
                 <div className="position-relative image-side ">
-                  <p className=" text-white h2">MAGIC IS IN THE DETAILS</p>
+                  <p className=" text-white h2">Ercas SSO Login Page</p>
                   <p className="white mb-0">
-                    Please use your credentials to login.
-                    <br />
-                    If you are not a member, please
-                    <Link to="" className="white">
-                      register
+                    <Link to="/register" className="white">
+                      Please use your credentials to login.
+                      <br />
+                      If you are not a member, please register
                     </Link>{" "}
                     .
                   </p>
                 </div>
                 <div className="form-side">
                   <Link to="/dashboard">
-                    <h2 style={{ fontWeight: "bold", fontSize: 30 }}>
-                      <span>
-                        <img src="/logo.png" alt="logo" />
-                      </span>
-                    </h2>
+                    <span>
+                      <img src="/logo.png" alt="logo" />
+                    </span>
                   </Link>
                   {isError && (
                     <div
