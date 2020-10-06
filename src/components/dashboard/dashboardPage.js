@@ -8,17 +8,21 @@ import DashboardNavWidget from "./dashboardNavWidget";
 import UserCountWidget from "./userCountWidget";
 import LatestUserWidget from "./latestUserWidget";
 import Cookies from "js-cookie";
+import { AdminContext } from "../../context/AdminContext";
 
 const Dashboard = (props) => {
   const { auth, dispatch } = useContext(AuthContext);
+  const { user } = useContext(AdminContext);
   const [firstName, setfisrtName] = useState("");
   const [lastName, setlastName] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     if (auth !== null) {
       if (auth.isAuth) {
         setfisrtName(auth.data.firstName);
         setlastName(auth.data.lastName);
+        setToken(auth.data.token);
       } else {
         props.history.push("/");
       }

@@ -81,7 +81,7 @@ const Login = (props) => {
             <div className="col-12 col-md-10 mx-auto my-auto">
               <div className="card auth-card">
                 <div className="position-relative image-side ">
-                  <p className=" text-white h2">Ercas SSO Login Page</p>
+                  <p className=" text-white h2">Ercas Single Sign-On</p>
                   <p className="white mb-0">
                     <Link to="/register" className="white">
                       Please use your credentials to login.

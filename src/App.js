@@ -7,19 +7,22 @@ import Dashboard from "./components/dashboard/dashboardPage";
 import ProtectedRoute from "./route/ProtectedRoute";
 import ErrorPage from "./components/error/error";
 import SignupPage from "./components/signup/signupPage";
+import AdminContextProvider from "./context/AdminContext";
 
 function App() {
   return (
     <div>
       <AuthContextProvider>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/register" component={SignupPage} />
-            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-            <Route path="" component={ErrorPage} />
-          </Switch>
-        </Router>
+        <AdminContextProvider>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/register" component={SignupPage} />
+              <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+              <Route path="" component={ErrorPage} />
+            </Switch>
+          </Router>
+        </AdminContextProvider>
       </AuthContextProvider>
     </div>
   );
