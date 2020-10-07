@@ -1,9 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import { LoginService } from "../../services/AuthService";
 import { AuthContext } from "../../context/AuthContext";
-import { AuthActionSuccess } from "../../actions/AuthAction";
+import { AuthActionSuccess, LogoutAction } from "../../actions/AuthAction";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import {
+  ERCASCOLLECT,
+  ERCASPAY,
+  ERCASPAY_URL,
+  ERCASCOLLECT_URL,
+  ERCASSERVICE_URL,
+  ERCASSERVICE,
+} from "../../constants";
 
 const Login = (props) => {
   const { dispatch, auth } = useContext(AuthContext);
@@ -12,15 +20,22 @@ const Login = (props) => {
   const [isLoading, setisLoading] = useState(false);
   const [isError, setisError] = useState(false);
   const [message, setMessage] = useState("");
+  const [appId, setAppId] = useState("");
 
   useEffect(() => {
     if (auth !== null) {
       if (auth.isAuth) {
-        //props.history.push("/dashboard");
         window.location = "/dashboard";
+      } else {
+        const appIdParam = getAppId();
+        setAppId(appIdParam);
       }
     }
   }, []);
+
+  const getAppId = () => {
+    return props.match.params.id;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,21 +52,40 @@ const Login = (props) => {
   const responseDisplay = (response) => {
     setUserName("");
     setPassword("");
-
     if (typeof response !== "undefined") {
       setisLoading(false);
-
       handleSetCookie(response);
-
       dispatch(AuthActionSuccess(response));
-
-      window.location = "/dashboard";
+      pageRedirect();
     } else {
       setisLoading(false);
-
       setisError(true);
-
       setMessage("Network Error...Kindly check network");
+    }
+  };
+
+  const logout = () => {
+    dispatch(LogoutAction());
+  };
+
+  const pageRedirect = () => {
+    console.log(appId);
+
+    switch (appId) {
+      case ERCASPAY:
+        window.location = ERCASPAY_URL;
+        logout();
+        break;
+      case ERCASCOLLECT:
+        window.location = ERCASCOLLECT_URL;
+        logout();
+        break;
+      case ERCASSERVICE:
+        window.location = ERCASSERVICE_URL;
+        logout();
+        break;
+      default:
+        window.location = "/dashboard";
     }
   };
 

@@ -5,6 +5,14 @@ export const GETALLUSER = "GET ALL USERS";
 
 export const LOGOUT = "LOGOUT";
 
+export const ERCASPAY = "ercaspay";
+export const ERCASSERVICE = "ercasservice";
+export const ERCASCOLLECT = "ercascollect";
+
+export const ERCASPAY_URL = "http://pay_v2.ercas.ng/";
+export const ERCASCOLLECT_URL = "http://collect.ercas.ng/";
+export const ERCASSERVICE_URL = "http://self.ercas.ng/";
+
 //export const BASE_URL = "https://www.codeapptech.com/school";
 export const BASE_URL = "http://35.193.238.146";
 //export const ADMIN_LOGIN_URL = `${BASE_URL}/api/admin/login`;
