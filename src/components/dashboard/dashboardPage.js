@@ -9,10 +9,12 @@ import UserCountWidget from "./userCountWidget";
 import LatestUserWidget from "./latestUserWidget";
 import Cookies from "js-cookie";
 import { AdminContext } from "../../context/AdminContext";
+import { getAllUsers } from "../../services/AdminService";
+import { GetAllUser } from "../../actions/AdminAction";
 
 const Dashboard = (props) => {
-  const { auth, dispatch } = useContext(AuthContext);
-  const { user } = useContext(AdminContext);
+  const { auth } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AdminContext);
   const [firstName, setfisrtName] = useState("");
   const [lastName, setlastName] = useState("");
   const [token, setToken] = useState("");
@@ -28,6 +30,24 @@ const Dashboard = (props) => {
       }
     }
   }, [auth, props]);
+
+  useEffect(() => {
+    if (token !== "") {
+      const tokenParam = {
+        access: token,
+      };
+      async function callGetUser() {
+        const response = await getAllUsers(tokenParam);
+        dispatch(GetAllUser(response));
+      }
+
+      try {
+        callGetUser();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }, [token]);
 
   const onClick = () => {
     handleRemoveCookie();
@@ -52,7 +72,7 @@ const Dashboard = (props) => {
           <div className="row">
             <DashboardNavWidget />
             <UserCountWidget />
-            <LatestUserWidget />
+            <LatestUserWidget user={user} />
           </div>
         </div>
       </main>

@@ -41,12 +41,18 @@ const Login = (props) => {
     e.preventDefault();
     setisLoading(true);
 
-    const response = await LoginService({
-      email: userName,
-      password: password,
-    });
+    try {
+      const response = await LoginService({
+        email: userName,
+        password: password,
+      });
 
-    responseDisplay(response);
+      responseDisplay(response);
+    } catch (e) {
+      setisLoading(false);
+      setisError(true);
+      setMessage(e.message);
+    }
   };
 
   const responseDisplay = (response) => {

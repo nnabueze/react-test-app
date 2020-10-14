@@ -10,8 +10,8 @@ export const LoginService = async (payload) => {
     };
     let res = await axios.post(ADMIN_LOGIN_URL, formData);
     return res.data;
-  } catch (error) {
-    //console.log(error);
+  } catch (e) {
+    throw handler(e);
   }
 };
 
@@ -23,5 +23,11 @@ export const signupService = async (payload) => {
     } else {
       return false;
     }
-  } catch (error) {}
+  } catch (e) {
+    throw handler(e);
+  }
+};
+
+export const handler = (err) => {
+  return err.response.data;
 };
