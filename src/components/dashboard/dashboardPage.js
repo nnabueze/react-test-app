@@ -18,6 +18,7 @@ const Dashboard = (props) => {
   const [firstName, setfisrtName] = useState("");
   const [lastName, setlastName] = useState("");
   const [token, setToken] = useState("");
+  const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
     if (auth !== null) {
@@ -49,6 +50,14 @@ const Dashboard = (props) => {
     }
   }, [token]);
 
+  useEffect(() => {
+    if (typeof user.data.data !== "undefined") {
+      setItemList(user.data.data);
+    } else {
+      setItemList([]);
+    }
+  }, [user]);
+
   const onClick = () => {
     handleRemoveCookie();
     dispatch(LogoutAction());
@@ -73,7 +82,7 @@ const Dashboard = (props) => {
           <div className="row">
             <DashboardNavWidget />
             <UserCountWidget />
-            <LatestUserWidget user={user} />
+            <LatestUserWidget itemList={itemList} />
           </div>
         </div>
       </main>

@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const LatestUserWidget = ({ user }) => {
-  const [itemList, setItemList] = useState([]);
-
+const LatestUserWidget = ({ itemList }) => {
   return (
     <div className="col-xl-6 col-lg-12 mb-4">
       <div className="card h-100">
@@ -39,11 +37,11 @@ const LatestUserWidget = ({ user }) => {
                   </td>
                   <td>
                     {item.isActive ? (
-                      <span class="badge badge-pill badge-success mb-1">
+                      <span className="badge badge-pill badge-success mb-1">
                         Active
                       </span>
                     ) : (
-                      <span class="badge badge-pill badge-danger mb-1">
+                      <span className="badge badge-pill badge-danger mb-1">
                         Disabled
                       </span>
                     )}
