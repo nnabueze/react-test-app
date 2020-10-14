@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const LatestUserWidget = ({ user }) => {
+  const [itemList, setItemList] = useState([]);
+
   return (
     <div className="col-xl-6 col-lg-12 mb-4">
-      {user.currentPage}
       <div className="card h-100">
         <div className="card-body">
           <h5 className="card-title">Latest User</h5>
@@ -22,7 +23,7 @@ const LatestUserWidget = ({ user }) => {
               </tr>
             </thead>
             <tbody>
-              {user.data.data.map((item, index) => (
+              {itemList.map((item, index) => (
                 <tr key={index}>
                   <td>
                     <p className="list-item-heading">{item.firstName}</p>
@@ -38,11 +39,11 @@ const LatestUserWidget = ({ user }) => {
                   </td>
                   <td>
                     {item.isActive ? (
-                      <span className="badge badge-pill badge-success mb-1">
+                      <span class="badge badge-pill badge-success mb-1">
                         Active
                       </span>
                     ) : (
-                      <span className="badge badge-pill badge-danger mb-1">
+                      <span class="badge badge-pill badge-danger mb-1">
                         Disabled
                       </span>
                     )}

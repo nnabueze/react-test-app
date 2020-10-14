@@ -13,8 +13,8 @@ import { getAllUsers } from "../../services/AdminService";
 import { GetAllUser } from "../../actions/AdminAction";
 
 const Dashboard = (props) => {
-  const { auth } = useContext(AuthContext);
-  const { user, dispatch } = useContext(AdminContext);
+  const { auth, dispatch } = useContext(AuthContext);
+  const { user, dispatch2 } = useContext(AdminContext);
   const [firstName, setfisrtName] = useState("");
   const [lastName, setlastName] = useState("");
   const [token, setToken] = useState("");
@@ -38,7 +38,7 @@ const Dashboard = (props) => {
       };
       async function callGetUser() {
         const response = await getAllUsers(tokenParam);
-        dispatch(GetAllUser(response));
+        dispatch2(GetAllUser(response));
       }
 
       try {
@@ -52,6 +52,7 @@ const Dashboard = (props) => {
   const onClick = () => {
     handleRemoveCookie();
     dispatch(LogoutAction());
+    dispatch2(LogoutAction());
   };
 
   const handleGetCookie = () => {

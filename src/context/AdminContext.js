@@ -4,7 +4,7 @@ import { AdminReducer } from "../reducers/AdminReducer";
 export const AdminContext = createContext();
 
 const AdminContextProvider = (props) => {
-  const [user, dispatch] = useReducer(AdminReducer, {}, () => {
+  const [user, dispatch2] = useReducer(AdminReducer, {}, () => {
     const data = localStorage.getItem("user");
     try {
       return JSON.parse(data);
@@ -16,7 +16,7 @@ const AdminContextProvider = (props) => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
   return (
-    <AdminContext.Provider value={{ user, dispatch }}>
+    <AdminContext.Provider value={{ user, dispatch2 }}>
       {props.children}
     </AdminContext.Provider>
   );
