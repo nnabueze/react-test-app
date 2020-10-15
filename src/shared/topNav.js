@@ -225,7 +225,7 @@ const TopNav = ({ logout, firstName, lastName }) => {
               {firstName} {lastName}
             </span>
             <span>
-              <img alt="Profile " src="img/profiles/l-1.jpg" />
+              <img alt="Profile " src="/avarter.png" />
             </span>
           </button>
           <div className="dropdown-menu dropdown-menu-right mt-3">

@@ -75,8 +75,6 @@ const Login = (props) => {
   };
 
   const pageRedirect = () => {
-    console.log(appId);
-
     switch (appId) {
       case ERCASPAY:
         window.location = ERCASPAY_URL;

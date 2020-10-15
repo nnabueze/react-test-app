@@ -11,6 +11,14 @@ import Cookies from "js-cookie";
 import { AdminContext } from "../../context/AdminContext";
 import { getAllUsers } from "../../services/AdminService";
 import { GetAllUser } from "../../actions/AdminAction";
+import {
+  ERCASCOLLECT,
+  ERCASCOLLECT_URL,
+  ERCASPAY,
+  ERCASPAY_URL,
+  ERCASSERVICE,
+  ERCASSERVICE_URL,
+} from "../../constants";
 
 const Dashboard = (props) => {
   const { auth, dispatch } = useContext(AuthContext);
@@ -52,7 +60,7 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     if (typeof user.data.data !== "undefined") {
-      setItemList(user.data.data);
+      setItemList([...user.data.data]);
     } else {
       setItemList([]);
     }
@@ -73,10 +81,24 @@ const Dashboard = (props) => {
     Cookies.remove("user", { domain: ".ercas.ng" });
   };
 
+  const goToErcasServices = (appId) => {
+    switch (appId) {
+      case ERCASPAY:
+        window.location = ERCASPAY_URL;
+        break;
+      case ERCASCOLLECT:
+        window.location = ERCASCOLLECT_URL;
+        break;
+      default:
+        window.location = ERCASSERVICE_URL;
+        break;
+    }
+  };
+
   return (
     <div id="app-container" className="menu-default show-spinner">
       <TopNav logout={onClick} firstName={firstName} lastName={lastName} />
-      <Menu />
+      <Menu ercas={goToErcasServices} />
       <main>
         <div className="container-fluid">
           <div className="row">
