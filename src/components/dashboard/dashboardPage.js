@@ -103,7 +103,7 @@ const Dashboard = (props) => {
         <div className="container-fluid">
           <div className="row">
             <DashboardNavWidget />
-            <UserCountWidget />
+            <UserCountWidget itemList={itemList} />
             <LatestUserWidget itemList={itemList} />
           </div>
         </div>

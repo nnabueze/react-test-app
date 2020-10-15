@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const UserCountWidget = (props) => {
+const UserCountWidget = ({ itemList }) => {
+  const getActiveUsers = (data) => {
+    return data.filter((e) => e.isActive === true).length;
+  };
+  const getDisabledUsers = (data) => {
+    return data.filter((e) => e.isActive === false).length;
+  };
+  const getTotalUsers = (data) => {
+    return data.length;
+  };
   return (
     <div className="col-lg-12 col-xl-6">
       <div className="icon-cards-row">
@@ -12,8 +21,10 @@ const UserCountWidget = (props) => {
                 <Link to="/dashboard" className="card">
                   <div className="card-body text-center">
                     <i className="iconsminds-clock" />
-                    <p className="card-text mb-0">Pending Users</p>
-                    <p className="lead text-center">16</p>
+                    <p className="card-text mb-0">Total Users</p>
+                    <p className="lead text-center">
+                      {getTotalUsers(itemList)}
+                    </p>
                   </div>
                 </Link>
               </li>
@@ -22,7 +33,9 @@ const UserCountWidget = (props) => {
                   <div className="card-body text-center">
                     <i className="iconsminds-basket-coins" />
                     <p className="card-text mb-0">Active Users</p>
-                    <p className="lead text-center">32</p>
+                    <p className="lead text-center">
+                      {getActiveUsers(itemList)}
+                    </p>
                   </div>
                 </Link>
               </li>
@@ -31,7 +44,9 @@ const UserCountWidget = (props) => {
                   <div className="card-body text-center">
                     <i className="iconsminds-arrow-refresh" />
                     <p className="card-text mb-0">Disabled Users</p>
-                    <p className="lead text-center">2</p>
+                    <p className="lead text-center">
+                      {getDisabledUsers(itemList)}
+                    </p>
                   </div>
                 </Link>
               </li>
@@ -39,8 +54,10 @@ const UserCountWidget = (props) => {
                 <Link to="/dashboard" className="card">
                   <div className="card-body text-center">
                     <i className="iconsminds-mail-read" />
-                    <p className="card-text mb-0">New Comments</p>
-                    <p className="lead text-center">25</p>
+                    <p className="card-text mb-0">Pending</p>
+                    <p className="lead text-center">
+                      {getDisabledUsers(itemList)}
+                    </p>
                   </div>
                 </Link>
               </li>
