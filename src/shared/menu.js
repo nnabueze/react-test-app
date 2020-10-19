@@ -91,27 +91,21 @@ const Menu = (props) => {
               <div id="collapseAuthorization" className="collapse show">
                 <ul className="list-unstyled inner-level-menu">
                   <li>
-                    <a href="Pages.Auth.Login.html">
+                    <Link to="/users">
                       <i className="simple-icon-user-following" />{" "}
-                      <span className="d-inline-block">Add Users</span>
-                    </a>
+                      <span className="d-inline-block">View Users</span>
+                    </Link>
                   </li>
                   <li>
                     <a href="Pages.Auth.Register.html">
                       <i className="simple-icon-user-follow" />{" "}
-                      <span className="d-inline-block">View Users</span>
+                      <span className="d-inline-block">Active Users</span>
                     </a>
                   </li>
                   <li>
                     <a href="Pages.Auth.ForgotPassword.html">
                       <i className="simple-icon-user-unfollow" />{" "}
-                      <span className="d-inline-block">Add Role</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="Pages.Auth.ForgotPassword.html">
-                      <i className="simple-icon-user-unfollow" />{" "}
-                      <span className="d-inline-block">View Roles</span>
+                      <span className="d-inline-block">Inactive Users</span>
                     </a>
                   </li>
                 </ul>
