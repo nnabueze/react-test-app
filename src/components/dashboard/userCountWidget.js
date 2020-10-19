@@ -111,11 +111,11 @@ const UserCountWidget = (props) => {
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-lg-4 col-xl-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Product Categories</h5>
-              <div class="dashboard-donut-chart chart">
+        <div className="col-md-4 col-lg-4 col-xl-4 mb-4">
+          <div className="card h-100">
+            <div className="card-body">
+              <h5 className="card-title">Product Categories</h5>
+              <div className="dashboard-donut-chart chart">
                 <canvas id="categoryChart"></canvas>
               </div>
             </div>

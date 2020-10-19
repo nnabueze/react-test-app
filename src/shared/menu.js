@@ -23,6 +23,10 @@ const Menu = (props) => {
         break;
     }
   };
+  const onLink = (route) => {
+    window.location = `/${route}`;
+  };
+
   return (
     <div className="menu">
       <div className="main-menu">
@@ -51,9 +55,9 @@ const Menu = (props) => {
         <div className="scroll">
           <ul className="list-unstyled" data-link="dashboard">
             <li className="active">
-              <Link to="/dashboard">
+              <Link onClick={() => onLink("dashboard")}>
                 <i className="simple-icon-rocket" />{" "}
-                <span className="d-inline-block">Services</span>
+                <span className="d-inline-block">Home</span>
               </Link>
             </li>
             <li>
@@ -91,7 +95,7 @@ const Menu = (props) => {
               <div id="collapseAuthorization" className="collapse show">
                 <ul className="list-unstyled inner-level-menu">
                   <li>
-                    <Link to="/users">
+                    <Link onClick={() => onLink("users")}>
                       <i className="simple-icon-user-following" />{" "}
                       <span className="d-inline-block">View Users</span>
                     </Link>
