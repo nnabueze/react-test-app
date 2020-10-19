@@ -8,6 +8,7 @@ import ProtectedRoute from "./route/ProtectedRoute";
 import ErrorPage from "./components/error/error";
 import SignupPage from "./components/signup/signupPage";
 import AdminContextProvider from "./context/AdminContext";
+import UserPage from "./components/user/userPage";
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
             <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/register" component={Login} />
-              <Route exact path="/register" component={SignupPage} />
-              <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+              <Route path="/register" component={SignupPage} />
+              <ProtectedRoute path="/dashboard" component={Dashboard} />
+              <ProtectedRoute path="/users" component={UserPage} />
               <Route path="/:id" component={Login} />
               <Route path="" component={ErrorPage} />
             </Switch>

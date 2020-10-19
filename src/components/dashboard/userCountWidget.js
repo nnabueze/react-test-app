@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AdminContext } from "../../context/AdminContext";
 
-const UserCountWidget = ({ itemList }) => {
+const UserCountWidget = (props) => {
+  const { user } = useContext(AdminContext);
+  const [itemList, setItemList] = useState([]);
+
+  useEffect(() => {
+    if (typeof user.data.data !== "undefined") {
+      setItemList([...user.data.data]);
+    } else {
+      setItemList([]);
+    }
+  }, [user]);
+
   const getActiveUsers = (data) => {
     return data.filter((e) => e.isActive === true).length;
   };
@@ -12,7 +24,7 @@ const UserCountWidget = ({ itemList }) => {
     return data.length;
   };
   return (
-    <div className="col-lg-12 col-xl-6">
+    <div className="col-lg-12 col-xl-12">
       <div className="icon-cards-row">
         <div className="glide dashboard-numbers">
           <div className="glide__track" data-glide-el="track">
@@ -67,7 +79,7 @@ const UserCountWidget = ({ itemList }) => {
       </div>
 
       <div className="row">
-        <div className="col-md-12 mb-4">
+        <div className="col-md-8 col-lg-8 col-xl-8 mb-4">
           <div className="card">
             <div className="position-absolute card-top-buttons">
               <button
@@ -95,6 +107,16 @@ const UserCountWidget = ({ itemList }) => {
               <h5 className="card-title">Users</h5>
               <div className="dashboard-line-chart chart">
                 <canvas id="salesChart" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xl-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Product Categories</h5>
+              <div class="dashboard-donut-chart chart">
+                <canvas id="categoryChart"></canvas>
               </div>
             </div>
           </div>

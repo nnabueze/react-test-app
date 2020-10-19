@@ -11,28 +11,15 @@ import Cookies from "js-cookie";
 import { AdminContext } from "../../context/AdminContext";
 import { getAllUsers } from "../../services/AdminService";
 import { GetAllUser } from "../../actions/AdminAction";
-import {
-  ERCASCOLLECT,
-  ERCASCOLLECT_URL,
-  ERCASPAY,
-  ERCASPAY_URL,
-  ERCASSERVICE,
-  ERCASSERVICE_URL,
-} from "../../constants";
 
 const Dashboard = (props) => {
-  const { auth, dispatch } = useContext(AuthContext);
-  const { user, dispatch2 } = useContext(AdminContext);
-  const [firstName, setfisrtName] = useState("");
-  const [lastName, setlastName] = useState("");
+  const { auth } = useContext(AuthContext);
+  const { dispatch2 } = useContext(AdminContext);
   const [token, setToken] = useState("");
-  const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
     if (auth !== null) {
       if (auth.isAuth) {
-        setfisrtName(auth.data.firstName);
-        setlastName(auth.data.lastName);
         setToken(auth.data.token);
       } else {
         props.history.push("/");
@@ -58,39 +45,24 @@ const Dashboard = (props) => {
     }
   }, [token]);
 
-  useEffect(() => {
-    if (typeof user.data.data !== "undefined") {
-      setItemList([...user.data.data]);
-    } else {
-      setItemList([]);
-    }
-  }, [user]);
+  // const handleGetCookie = () => {
+  //   const user = JSON.parse(Cookies.get("user"));
+  //   return user;
+  // };
 
-  const onClick = () => {
-    handleRemoveCookie();
-    dispatch(LogoutAction());
-    dispatch2(LogoutAction());
-  };
-
-  const handleGetCookie = () => {
-    const user = JSON.parse(Cookies.get("user"));
-    return user;
-  };
-
-  const handleRemoveCookie = () => {
-    Cookies.remove("user", { domain: ".ercas.ng" });
-  };
+  // const handleRemoveCookie = () => {
+  //   Cookies.remove("user", { domain: ".ercas.ng" });
+  // };
 
   return (
     <div>
-      <TopNav logout={onClick} firstName={firstName} lastName={lastName} />
+      <TopNav />
       <Menu />
       <main>
         <div className="container-fluid">
           <div className="row">
             <DashboardNavWidget />
-            <UserCountWidget itemList={itemList} />
-            <LatestUserWidget itemList={itemList} />
+            <UserCountWidget />
           </div>
         </div>
       </main>

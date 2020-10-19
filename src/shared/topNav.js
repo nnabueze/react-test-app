@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import Cookies from "js-cookie";
+import { LogoutAction } from "../actions/AuthAction";
+import { AdminContext } from "../context/AdminContext";
 
-const TopNav = ({ logout, firstName, lastName }) => {
+const TopNav = (props) => {
+  const { auth, dispatch } = useContext(AuthContext);
+  const { user, dispatch2 } = useContext(AdminContext);
+  const [firstName, setfisrtName] = useState("");
+  const [lastName, setlastName] = useState("");
+
+  useEffect(() => {
+    if (auth !== null) {
+      if (auth.isAuth) {
+        setfisrtName(auth.data.firstName);
+        setlastName(auth.data.lastName);
+      }
+    }
+  }, [auth, props]);
+
+  const logout = () => {
+    handleRemoveCookie();
+    dispatch(LogoutAction());
+    dispatch2(LogoutAction());
+  };
+
+  const handleRemoveCookie = () => {
+    Cookies.remove("user", { domain: ".ercas.ng" });
+  };
+
   return (
     <nav className="navbar fixed-top">
       <div className="d-flex align-items-center navbar-left">

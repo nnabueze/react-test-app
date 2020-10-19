@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AdminContext } from "../../context/AdminContext";
 
-const LatestUserWidget = ({ itemList }) => {
+const LatestUserWidget = (props) => {
+  const { user } = useContext(AdminContext);
+  const [itemList, setItemList] = useState([]);
+
+  useEffect(() => {
+    if (typeof user.data.data !== "undefined") {
+      setItemList([...user.data.data]);
+    } else {
+      setItemList([]);
+    }
+  }, [user]);
+
   return (
-    <div className="col-xl-6 col-lg-12 mb-4">
+    <div className="col-xl-12 col-lg-12 mb-4">
       <div className="card h-100">
         <div className="card-body">
-          <h5 className="card-title">Latest User</h5>
           <table
             className="data-table data-table-standard responsive nowrap"
             data-order='[[ 1, "desc" ]]'
