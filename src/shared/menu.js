@@ -6,9 +6,23 @@ import {
   ERCASPAY,
   ERCASPAY_URL,
   ERCASSERVICE,
+  ERCASSERVICE_URL,
 } from "../constants";
 
-const Menu = ({ ercas }) => {
+const Menu = (props) => {
+  const ercas = (appId) => {
+    switch (appId) {
+      case ERCASPAY:
+        window.location = ERCASPAY_URL;
+        break;
+      case ERCASCOLLECT:
+        window.location = ERCASCOLLECT_URL;
+        break;
+      default:
+        window.location = ERCASSERVICE_URL;
+        break;
+    }
+  };
   return (
     <div className="menu">
       <div className="main-menu">

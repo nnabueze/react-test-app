@@ -81,24 +81,10 @@ const Dashboard = (props) => {
     Cookies.remove("user", { domain: ".ercas.ng" });
   };
 
-  const goToErcasServices = (appId) => {
-    switch (appId) {
-      case ERCASPAY:
-        window.location = ERCASPAY_URL;
-        break;
-      case ERCASCOLLECT:
-        window.location = ERCASCOLLECT_URL;
-        break;
-      default:
-        window.location = ERCASSERVICE_URL;
-        break;
-    }
-  };
-
   return (
-    <div id="app-container" className="menu-default show-spinner">
+    <div>
       <TopNav logout={onClick} firstName={firstName} lastName={lastName} />
-      <Menu ercas={goToErcasServices} />
+      <Menu />
       <main>
         <div className="container-fluid">
           <div className="row">
