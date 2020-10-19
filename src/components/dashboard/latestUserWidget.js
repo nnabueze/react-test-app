@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AdminContext } from "../../context/AdminContext";
 
 const LatestUserWidget = (props) => {
@@ -29,6 +30,7 @@ const LatestUserWidget = (props) => {
                 <th>Phone</th>
                 <th>Category</th>
                 <th>Registered Date</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -59,6 +61,19 @@ const LatestUserWidget = (props) => {
                   </td>
                   <td>
                     <p className="text-muted">{item.createdDate}</p>
+                  </td>
+                  <td>
+                    <Link to="/dashboard">
+                      <div className="glyph">
+                        <div
+                          style={{ fontSize: 25 }}
+                          className="glyph-icon iconsminds-align-justify-all"
+                        ></div>
+                        {/* <div style={{ fontSize: 10 }} className="class-name">
+                        view
+                      </div> */}
+                      </div>
+                    </Link>
                   </td>
                 </tr>
               ))}
