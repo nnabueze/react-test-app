@@ -25,7 +25,6 @@ const ActiveUserWidget = (props) => {
       };
       async function callGetUser() {
         const response = await getActiveUsers(tokenParam);
-        console.log(response);
         setUsers(response.data);
       }
 
@@ -36,6 +35,9 @@ const ActiveUserWidget = (props) => {
       }
     }
   }, [token]);
+  const navigatePage = (id) => {
+    window.location = `/user-details?id=${id}`;
+  };
   return (
     <div className="col-xl-12 col-lg-12 mb-4">
       <div className="card h-100">
@@ -85,7 +87,7 @@ const ActiveUserWidget = (props) => {
                     <p className="text-muted">{item.createdDate}</p>
                   </td>
                   <td>
-                    <Link to="/dashboard">
+                    <Link onClick={() => navigatePage(item.id)}>
                       <div className="glyph">
                         <div
                           style={{ fontSize: 25 }}

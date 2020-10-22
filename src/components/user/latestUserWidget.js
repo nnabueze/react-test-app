@@ -14,6 +14,10 @@ const LatestUserWidget = (props) => {
     }
   }, [user]);
 
+  const navigatePage = (id) => {
+    window.location = `/user-details?id=${id}`;
+  };
+
   return (
     <div className="col-xl-12 col-lg-12 mb-4">
       <div className="card h-100">
@@ -63,7 +67,7 @@ const LatestUserWidget = (props) => {
                     <p className="text-muted">{item.createdDate}</p>
                   </td>
                   <td>
-                    <Link to="/dashboard">
+                    <Link onClick={() => navigatePage(item.id)}>
                       <div className="glyph">
                         <div
                           style={{ fontSize: 25 }}

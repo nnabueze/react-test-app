@@ -9,7 +9,7 @@ import ErrorPage from "./components/error/error";
 import SignupPage from "./components/signup/signupPage";
 import AdminContextProvider from "./context/AdminContext";
 import UserPage from "./components/user/userPage";
-import UserDetail from "./components/user/userDetail";
+import UserDetail from "./components/user/userDetailPage";
 import ActiveUserPage from "./components/user/activeUserPage";
 import InactiveUserPage from "./components/user/inactiveUserPage";
 
@@ -29,8 +29,8 @@ function App() {
                 component={InactiveUserPage}
               />
               <ProtectedRoute path="/users" component={UserPage} />
-              <ProtectedRoute path="/users/:id" component={UserDetail} />
-              {/* <Route path="/:id" component={Login} /> */}
+              <ProtectedRoute path="/user-details" component={UserDetail} />
+              <Route path="/:id" component={Login} />
               <Route path="" component={ErrorPage} />
             </Switch>
           </Router>
