@@ -11,6 +11,7 @@ import AdminContextProvider from "./context/AdminContext";
 import UserPage from "./components/user/userPage";
 import UserDetail from "./components/user/userDetail";
 import ActiveUserPage from "./components/user/activeUserPage";
+import InactiveUserPage from "./components/user/inactiveUserPage";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
               <ProtectedRoute path="/active-users" component={ActiveUserPage} />
               <ProtectedRoute
                 path="/inactive-users"
-                component={ActiveUserPage}
+                component={InactiveUserPage}
               />
               <ProtectedRoute path="/users" component={UserPage} />
               <ProtectedRoute path="/users/:id" component={UserDetail} />

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { getActiveUsers } from "../../services/AdminService";
+import { getInActiveUsers } from "../../services/AdminService";
 
-const ActiveUserWidget = (props) => {
+const InactiveUserWidget = (props) => {
   const { auth } = useContext(AuthContext);
   const [token, setToken] = useState("");
   const [users, setUsers] = useState([]);
@@ -24,7 +24,7 @@ const ActiveUserWidget = (props) => {
         access: token,
       };
       async function callGetUser() {
-        const response = await getActiveUsers(tokenParam);
+        const response = await getInActiveUsers(tokenParam);
         console.log(response);
         setUsers(response.data);
       }
@@ -107,4 +107,4 @@ const ActiveUserWidget = (props) => {
   );
 };
 
-export default ActiveUserWidget;
+export default InactiveUserWidget;

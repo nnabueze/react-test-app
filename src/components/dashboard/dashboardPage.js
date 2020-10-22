@@ -22,10 +22,10 @@ const Dashboard = (props) => {
       if (auth.isAuth) {
         setToken(auth.data.token);
       } else {
-        props.history.push("/");
+        window.location = "/";
       }
     }
-  }, [auth, props]);
+  }, [auth]);
 
   useEffect(() => {
     if (token !== "") {

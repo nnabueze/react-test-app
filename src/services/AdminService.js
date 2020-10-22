@@ -1,5 +1,9 @@
 import axios from "axios";
-import { ADMIN_ACTIVE_USERS, ADMIN_ALL_USERS } from "../constants";
+import {
+  ADMIN_ACTIVE_USERS,
+  ADMIN_ALL_USERS,
+  ADMIN_INACTIVE_USERS,
+} from "../constants";
 
 export const getAllUsers = async (payload) => {
   console.log(payload);
@@ -21,6 +25,21 @@ export const getActiveUsers = async (payload) => {
   try {
     if (payload !== "undefined") {
       let res = await axios.get(ADMIN_ACTIVE_USERS, {
+        headers: {
+          Authorization: `Bearer ${payload.access}`,
+        },
+      });
+      return res.data;
+    }
+  } catch (e) {
+    throw handler(e);
+  }
+};
+
+export const getInActiveUsers = async (payload) => {
+  try {
+    if (payload !== "undefined") {
+      let res = await axios.get(ADMIN_INACTIVE_USERS, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },

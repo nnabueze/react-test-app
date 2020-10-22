@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Footer from "../../shared/footer";
 import Menu from "../../shared/menu";
 import TopNav from "../../shared/topNav";
+import InactiveUserWidget from "./inactiveUserWidget";
 import LatestUserWidget from "./latestUserWidget";
 
 const InactiveUserPage = () => {
@@ -35,7 +36,7 @@ const InactiveUserPage = () => {
               </div>
 
               <div className="separator mb-5" />
-              <LatestUserWidget />
+              <InactiveUserWidget />
             </div>
           </div>
         </div>
