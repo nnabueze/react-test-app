@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Footer from "../../shared/footer";
 import Menu from "../../shared/menu";
 import TopNav from "../../shared/topNav";
-import LatestUserWidget from "../dashboard/latestUserWidget";
+import LatestUserWidget from "./latestUserWidget";
 
 const UserPage = () => {
   return (

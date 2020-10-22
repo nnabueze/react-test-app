@@ -9,6 +9,8 @@ import ErrorPage from "./components/error/error";
 import SignupPage from "./components/signup/signupPage";
 import AdminContextProvider from "./context/AdminContext";
 import UserPage from "./components/user/userPage";
+import UserDetail from "./components/user/userDetail";
+import ActiveUserPage from "./components/user/activeUserPage";
 
 function App() {
   return (
@@ -18,11 +20,16 @@ function App() {
           <Router>
             <Switch>
               <Route exact path="/" component={Login} />
-              <Route path="/register" component={Login} />
               <Route path="/register" component={SignupPage} />
               <ProtectedRoute path="/dashboard" component={Dashboard} />
+              <ProtectedRoute path="/active-users" component={ActiveUserPage} />
+              <ProtectedRoute
+                path="/inactive-users"
+                component={ActiveUserPage}
+              />
               <ProtectedRoute path="/users" component={UserPage} />
-              <Route path="/:id" component={Login} />
+              <ProtectedRoute path="/users/:id" component={UserDetail} />
+              {/* <Route path="/:id" component={Login} /> */}
               <Route path="" component={ErrorPage} />
             </Switch>
           </Router>

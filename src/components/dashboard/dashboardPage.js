@@ -6,7 +6,7 @@ import Menu from "../../shared/menu";
 import Footer from "../../shared/footer";
 import DashboardNavWidget from "./dashboardNavWidget";
 import UserCountWidget from "./userCountWidget";
-import LatestUserWidget from "./latestUserWidget";
+import LatestUserWidget from "../user/latestUserWidget";
 import Cookies from "js-cookie";
 import { AdminContext } from "../../context/AdminContext";
 import { getAllUsers } from "../../services/AdminService";

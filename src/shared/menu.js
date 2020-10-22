@@ -101,16 +101,16 @@ const Menu = (props) => {
                     </Link>
                   </li>
                   <li>
-                    <a href="Pages.Auth.Register.html">
+                    <Link onClick={() => onLink("active-users")}>
                       <i className="simple-icon-user-follow" />{" "}
                       <span className="d-inline-block">Active Users</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="Pages.Auth.ForgotPassword.html">
+                    <Link onClick={() => onLink("inactive-users")}>
                       <i className="simple-icon-user-unfollow" />{" "}
                       <span className="d-inline-block">Inactive Users</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
