@@ -15,6 +15,7 @@ export const getAllUsers = async (payload) => {
           Authorization: `Bearer ${payload.access}`,
         },
       });
+      console.log(res);
       return res.data;
     }
   } catch (e) {

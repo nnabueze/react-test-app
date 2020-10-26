@@ -7,10 +7,12 @@ const UserCountWidget = (props) => {
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
-    if (typeof user.data.data !== "undefined") {
-      setItemList([...user.data.data]);
-    } else {
-      setItemList([]);
+    if (user !== null) {
+      if (typeof user.data.data !== "undefined") {
+        setItemList([...user.data.data]);
+      } else {
+        setItemList([]);
+      }
     }
   }, [user]);
 
