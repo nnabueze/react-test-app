@@ -170,14 +170,7 @@ const Login = (props) => {
                     validationSchema={loginScheme}
                     onSubmit={(data) => handleSubmit(data)}
                   >
-                    {({
-                      handleSubmit,
-                      handleChange,
-                      handleBlur,
-                      values,
-                      errors,
-                      touched,
-                    }) => {
+                    {({ handleSubmit }) => {
                       return (
                         <form onSubmit={handleSubmit}>
                           <TextInput name={"email"} label={"E-mail"} />
