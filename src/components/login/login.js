@@ -23,8 +23,6 @@ const loginScheme = Yup.object().shape({
 
 const Login = (props) => {
   const { dispatch, auth } = useContext(AuthContext);
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
   const [isLoading, setisLoading] = useState(false);
   const [isError, setisError] = useState(false);
   const [message, setMessage] = useState("");
@@ -46,7 +44,6 @@ const Login = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    //e.preventDefault();
     setisLoading(true);
 
     try {
@@ -64,8 +61,6 @@ const Login = (props) => {
   };
 
   const responseDisplay = (response) => {
-    setUserName("");
-    setPassword("");
     if (typeof response !== "undefined") {
       setisLoading(false);
       handleSetCookie(response);
