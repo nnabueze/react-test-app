@@ -4,6 +4,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { AuthActionSuccess, LogoutAction } from "../../actions/AuthAction";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Formik } from "formik";
+import * as Yup from "yup";
 import {
   ERCASCOLLECT,
   ERCASPAY,
@@ -12,6 +14,11 @@ import {
   ERCASSERVICE_URL,
   ERCASSERVICE,
 } from "../../constants";
+
+const loginScheme = Yup.object().shape({
+  username: Yup.string().required().email(),
+  pass: Yup.string().required(),
+});
 
 const Login = (props) => {
   const { dispatch, auth } = useContext(AuthContext);
@@ -38,13 +45,13 @@ const Login = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     setisLoading(true);
 
     try {
       const response = await LoginService({
-        email: userName,
-        password: password,
+        email: e.username,
+        password: e.pass,
       });
 
       responseDisplay(response);
@@ -153,44 +160,78 @@ const Login = (props) => {
                   )}
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   <h6 className="mb-4">Login</h6>
-                  <form onSubmit={handleSubmit}>
-                    <label className="form-group has-float-label mb-4">
-                      <input
-                        className="form-control"
-                        value={userName}
-                        name="username"
-                        onChange={(e) => setUserName(e.target.value)}
-                      />
-                      <span>E-mail</span>
-                    </label>
-                    <label className="form-group has-float-label mb-4">
-                      <input
-                        className="form-control"
-                        value={password}
-                        name="pass"
-                        onChange={(e) => setPassword(e.target.value)}
-                        type="password"
-                      />
-                      <span>Password</span>
-                    </label>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <Link to="#">Forget password?</Link>
-                      <button
-                        className="btn btn-primary btn-lg btn-shadow"
-                        type="submit"
-                        disabled={isLoading}
-                      >
-                        {isLoading && (
-                          <i
-                            className="fa fa-refresh fa-spin"
-                            style={{ marginRight: "5px", color: "white" }}
-                          />
-                        )}
-                        {isLoading && <span>&nbsp;&nbsp;WAITING</span>}
-                        {!isLoading && <span>LOGIN</span>}
-                      </button>
-                    </div>
-                  </form>
+
+                  <Formik
+                    initialValues={{
+                      username: "",
+                      pass: "",
+                    }}
+                    validationSchema={loginScheme}
+                    onSubmit={(data) => handleSubmit(data)}
+                  >
+                    {({
+                      handleSubmit,
+                      handleChange,
+                      handleBlur,
+                      values,
+                      errors,
+                      touched,
+                    }) => {
+                      return (
+                        <form onSubmit={handleSubmit}>
+                          <label className="form-group has-float-label mb-4">
+                            <input
+                              className="form-control"
+                              value={values.username}
+                              name="username"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                            />
+                            {errors.username && touched.username && (
+                              <span style={{ color: "red" }}>
+                                {errors.username}*
+                              </span>
+                            )}
+                            <span>E-mail</span>
+                          </label>
+
+                          <label className="form-group has-float-label mb-4">
+                            <input
+                              className="form-control"
+                              value={values.pass}
+                              name="pass"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              type="password"
+                            />
+                            {errors.pass && touched.pass && (
+                              <span style={{ color: "red" }}>
+                                {errors.pass}*
+                              </span>
+                            )}
+                            <span>Password</span>
+                          </label>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <Link to="#">Forget password?</Link>
+                            <button
+                              className="btn btn-primary btn-lg btn-shadow"
+                              type="submit"
+                              disabled={isLoading}
+                            >
+                              {isLoading && (
+                                <i
+                                  className="fa fa-refresh fa-spin"
+                                  style={{ marginRight: "5px", color: "white" }}
+                                />
+                              )}
+                              {isLoading && <span>&nbsp;&nbsp;WAITING</span>}
+                              {!isLoading && <span>LOGIN</span>}
+                            </button>
+                          </div>
+                        </form>
+                      );
+                    }}
+                  </Formik>
                 </div>
               </div>
             </div>
