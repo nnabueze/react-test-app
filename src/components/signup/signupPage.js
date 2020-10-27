@@ -2,38 +2,54 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signupService } from "../../services/AuthService";
 import AlertNotice from "../../shared/alert";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import TextInput from "../../shared/textInput";
+
+const signupScheme = Yup.object().shape({
+  firstname: Yup.string().required(),
+  lastname: Yup.string().required(),
+  email: Yup.string().required().email(),
+  phone: Yup.string().required(),
+  password: Yup.string().min(6).required(),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password"), null],
+    "Passwords must match"
+  ),
+});
+
+const initialValue = {
+  firstname: "",
+  lastname: "",
+  email: "",
+  phone: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const SignupPage = (props) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [isError, setisError] = useState(false);
   const [isNotError, setisNotError] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setisLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     setisLoading(true);
     setisError(false);
     setisNotError(false);
 
     const response = await signupService({
-      firstName: firstName,
-      lastName: lastName,
-      phone: phone,
-      email: email,
-      password: password,
-      passwordConfirmation: confirmPassword,
+      firstName: e.firstname,
+      lastName: e.lastname,
+      phone: e.phone,
+      email: e.email,
+      password: e.password,
+      passwordConfirmation: e.confirmPassword,
     });
 
     if (response) {
       setisLoading(false);
       setisNotError(true);
-      setParameter();
       setMessage("Account created Successfully");
     } else {
       setisLoading(false);
@@ -42,15 +58,6 @@ const SignupPage = (props) => {
 
       setMessage("Error occured! Kindly check email");
     }
-  };
-
-  const setParameter = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPhone("");
-    setPassword("");
-    setConfirmPassword("");
   };
 
   return (
@@ -83,80 +90,53 @@ const SignupPage = (props) => {
                     isError={isError}
                   />
                   <h6 className="mb-4">Register</h6>
-                  <form onSubmit={handleSubmit}>
-                    <label className="form-group has-float-label mb-4">
-                      <input
-                        className="form-control"
-                        value={firstName}
-                        name="firstname"
-                        onChange={(e) => setFirstName(e.target.value)}
-                      />
-                      <span>First Name</span>
-                    </label>
-                    <label className="form-group has-float-label mb-4">
-                      <input
-                        className="form-control"
-                        value={lastName}
-                        name="lastname"
-                        onChange={(e) => setLastName(e.target.value)}
-                      />
-                      <span>Last Name</span>
-                    </label>
-                    <label className="form-group has-float-label mb-4">
-                      <input
-                        className="form-control"
-                        value={email}
-                        name="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                      <span>E-mail</span>
-                    </label>
-                    <label className="form-group has-float-label mb-4">
-                      <input
-                        className="form-control"
-                        value={phone}
-                        name="phone"
-                        onChange={(e) => setPhone(e.target.value)}
-                      />
-                      <span>Phone Number</span>
-                    </label>
-                    <label className="form-group has-float-label mb-4">
-                      <input
-                        className="form-control"
-                        type="password"
-                        value={password}
-                        name="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                      <span>Password</span>
-                    </label>
-                    <label className="form-group has-float-label mb-4">
-                      <input
-                        className="form-control"
-                        type="password"
-                        value={confirmPassword}
-                        name="confirmPassword"
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                      />
-                      <span>Confirm Password</span>
-                    </label>
-                    <div className="d-flex justify-content-end align-items-center">
-                      <button
-                        className="btn btn-primary btn-lg btn-shadow"
-                        type="submit"
-                        disabled={isLoading}
-                      >
-                        {isLoading && (
-                          <i
-                            className="fa fa-refresh fa-spin"
-                            style={{ marginRight: "5px", color: "white" }}
+                  <Formik
+                    initialValues={initialValue}
+                    validationSchema={signupScheme}
+                    onSubmit={(data) => handleSubmit(data)}
+                  >
+                    {({ handleSubmit }) => {
+                      return (
+                        <form onSubmit={handleSubmit}>
+                          <TextInput name={"firstname"} label={"First Name"} />
+
+                          <TextInput name={"lastname"} label={"Last Name"} />
+
+                          <TextInput name={"email"} label={"E-mail"} />
+
+                          <TextInput name={"phone"} label={"Phone Number"} />
+
+                          <TextInput
+                            type={"password"}
+                            name={"password"}
+                            label={"Password"}
                           />
-                        )}
-                        {isLoading && <span>&nbsp;&nbsp;WAITING</span>}
-                        {!isLoading && <span>REGISTER</span>}
-                      </button>
-                    </div>
-                  </form>
+
+                          <TextInput
+                            type={"password"}
+                            name={"confirmPassword"}
+                            label={"Confirm Password"}
+                          />
+                          <div className="d-flex justify-content-end align-items-center">
+                            <button
+                              className="btn btn-primary btn-lg btn-shadow"
+                              type="submit"
+                              disabled={isLoading}
+                            >
+                              {isLoading && (
+                                <i
+                                  className="fa fa-refresh fa-spin"
+                                  style={{ marginRight: "5px", color: "white" }}
+                                />
+                              )}
+                              {isLoading && <span>&nbsp;&nbsp;WAITING</span>}
+                              {!isLoading && <span>REGISTER</span>}
+                            </button>
+                          </div>
+                        </form>
+                      );
+                    }}
+                  </Formik>
                 </div>
               </div>
             </div>
