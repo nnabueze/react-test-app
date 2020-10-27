@@ -14,10 +14,11 @@ import {
   ERCASSERVICE_URL,
   ERCASSERVICE,
 } from "../../constants";
+import TextInput from "../../shared/textInput";
 
 const loginScheme = Yup.object().shape({
-  username: Yup.string().required().email(),
-  pass: Yup.string().required(),
+  email: Yup.string().required().email(),
+  password: Yup.string().required(),
 });
 
 const Login = (props) => {
@@ -50,8 +51,8 @@ const Login = (props) => {
 
     try {
       const response = await LoginService({
-        email: e.username,
-        password: e.pass,
+        email: e.email,
+        password: e.password,
       });
 
       responseDisplay(response);
@@ -163,8 +164,8 @@ const Login = (props) => {
 
                   <Formik
                     initialValues={{
-                      username: "",
-                      pass: "",
+                      email: "",
+                      password: "",
                     }}
                     validationSchema={loginScheme}
                     onSubmit={(data) => handleSubmit(data)}
@@ -179,38 +180,12 @@ const Login = (props) => {
                     }) => {
                       return (
                         <form onSubmit={handleSubmit}>
-                          <label className="form-group has-float-label mb-4">
-                            <input
-                              className="form-control"
-                              value={values.username}
-                              name="username"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                            />
-                            {errors.username && touched.username && (
-                              <span style={{ color: "red" }}>
-                                {errors.username}*
-                              </span>
-                            )}
-                            <span>E-mail</span>
-                          </label>
-
-                          <label className="form-group has-float-label mb-4">
-                            <input
-                              className="form-control"
-                              value={values.pass}
-                              name="pass"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              type="password"
-                            />
-                            {errors.pass && touched.pass && (
-                              <span style={{ color: "red" }}>
-                                {errors.pass}*
-                              </span>
-                            )}
-                            <span>Password</span>
-                          </label>
+                          <TextInput name={"email"} label={"E-mail"} />
+                          <TextInput
+                            type="password"
+                            name={"password"}
+                            label={"Password"}
+                          />
                           <div className="d-flex justify-content-between align-items-center">
                             <Link to="#">Forget password?</Link>
                             <button
