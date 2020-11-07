@@ -12,7 +12,7 @@ const ActiveUserPage = (props) => {
       <Menu />
       <main>
         <div className="container-fluid">
-          <div className="row app-row">
+          <div className="row">
             <div className="col-12">
               <div className="mb-2">
                 <h1>Active Users Page</h1>

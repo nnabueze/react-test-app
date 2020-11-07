@@ -39,7 +39,7 @@ const ActiveUserWidget = (props) => {
     window.location = `/user-details?id=${id}`;
   };
   return (
-    <div className="col-xl-12 col-lg-12 mb-4">
+    <div className="col-12 mb-4">
       <div className="card h-100">
         <div className="card-body">
           <table
