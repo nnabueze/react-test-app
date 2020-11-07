@@ -79,7 +79,7 @@ const TopNav = (props) => {
       </Link>
       <div className="navbar-right">
         <div className="header-icons d-inline-block align-middle">
-          <div className="d-none d-md-inline-block align-text-bottom mr-3">
+          {/* <div className="d-none d-md-inline-block align-text-bottom mr-3">
             <div
               className="custom-switch custom-switch-primary-inverse custom-switch-small pl-1"
               data-toggle="tooltip"
@@ -94,8 +94,8 @@ const TopNav = (props) => {
               />
               <label className="custom-switch-btn" htmlFor="switchDark" />
             </div>
-          </div>
-          <div className="position-relative d-none d-sm-inline-block">
+          </div> */}
+          {/* <div className="position-relative d-none d-sm-inline-block">
             <button
               className="header-icon btn btn-empty"
               type="button"
@@ -135,8 +135,8 @@ const TopNav = (props) => {
                 <span>Tasks</span>
               </Link>
             </div>
-          </div>
-          <div className="position-relative d-inline-block">
+          </div> */}
+          {/* <div className="position-relative d-inline-block">
             <button
               className="header-icon btn btn-empty"
               type="button"
@@ -231,7 +231,7 @@ const TopNav = (props) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <button
             className="header-icon btn btn-empty d-none d-sm-inline-block"
             type="button"
