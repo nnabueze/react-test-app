@@ -13,12 +13,12 @@ const DashboardNavWidget = (props) => {
           <li className="breadcrumb-item">
             <Link to="/dashboard">Home</Link>
           </li>
-          <li className="breadcrumb-item">
+          {/* <li className="breadcrumb-item">
             <Link to="/dashboard">Library</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Data
-          </li>
+          </li> */}
         </ol>
       </nav>
       <div className="separator mb-5" />

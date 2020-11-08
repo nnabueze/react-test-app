@@ -12,7 +12,7 @@ const UserPage = () => {
       <Menu />
       <main>
         <div className="container-fluid">
-          <div className="row app-row">
+          <div className="row">
             <div className="col-12">
               <div className="mb-2">
                 <h1>Users Page</h1>
