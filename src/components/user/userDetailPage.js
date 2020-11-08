@@ -97,7 +97,7 @@ const UserDetail = (props) => {
                 </ol>
               </nav>
               <div className="separator mb-5" />
-              <div className="col-lg-8 col-md-8 mb-4">
+              <div className="col-12 mb-4">
                 <div className="card">
                   <div className="card-body">
                     <div className="row">

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Footer from "../../shared/footer";
 import Menu from "../../shared/menu";
 import TopNav from "../../shared/topNav";
+import AdminUserRegister from "./adminUserRegister";
 import LatestUserWidget from "./latestUserWidget";
 
 const UserPage = () => {
@@ -42,106 +43,7 @@ const UserPage = () => {
                   >
                     ADD NEW
                   </button>
-                  <div
-                    className="modal fade modal-right"
-                    id="exampleModal"
-                    tabIndex={-1}
-                    role="dialog"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div className="modal-dialog" role="document">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h5 className="modal-title" id="exampleModalLabel">
-                            Add New
-                          </h5>
-                          <button
-                            type="button"
-                            className="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">×</span>
-                          </button>
-                        </div>
-                        <div className="modal-body">
-                          <form>
-                            <div className="form-group">
-                              <label>Title</label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Details</label>
-                              <textarea
-                                className="form-control"
-                                rows={2}
-                                defaultValue={""}
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Category</label>
-                              <select
-                                className="form-control select2-single"
-                                data-width="100%"
-                              >
-                                <option label=" ">&nbsp;</option>
-                                <option value="Flexbox">Flexbox</option>
-                                <option value="Sass">Sass</option>
-                                <option value="React">React</option>
-                              </select>
-                            </div>
-                            <div className="form-group">
-                              <label>Labels</label>
-                              <select
-                                className="form-control select2-multiple"
-                                multiple="multiple"
-                                data-width="100%"
-                              >
-                                <option value="New Framework">
-                                  New Framework
-                                </option>
-                                <option value="Education">Education</option>
-                                <option value="Personal">Personal</option>
-                              </select>
-                            </div>
-                            <div className="form-group">
-                              <label>Status</label>
-                              <div className="custom-control custom-checkbox">
-                                <input
-                                  type="checkbox"
-                                  className="custom-control-input"
-                                  id="customCheck1"
-                                />
-                                <label
-                                  className="custom-control-label"
-                                  htmlFor="customCheck1"
-                                >
-                                  Completed
-                                </label>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                        <div className="modal-footer">
-                          <button
-                            type="button"
-                            className="btn btn-outline-primary"
-                            data-dismiss="modal"
-                          >
-                            Cancel
-                          </button>
-                          <button type="button" className="btn btn-primary">
-                            Submit
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <AdminUserRegister />
                 </div>
               </div>
 

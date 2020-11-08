@@ -5,7 +5,12 @@ const TextInput = (props) => {
   const [fields, meta] = useField(props.name);
   return (
     <label className="form-group has-float-label mb-4">
-      <input className="form-control" {...fields} {...props} />
+      <input
+        style={{ paddingTop: 30, paddingBottom: 30 }}
+        className="form-control"
+        {...fields}
+        {...props}
+      />
       {meta.error && meta.touched && (
         <span style={{ color: "red" }}>{meta.error}*</span>
       )}
