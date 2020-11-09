@@ -4,6 +4,7 @@ import {
   ADMIN_ALL_USERS,
   ADMIN_INACTIVE_USERS,
   ADMIN_USERS_BYID,
+  EDIT_USER,
   USER_ACTIVATE,
 } from "../constants";
 
@@ -56,6 +57,21 @@ export const getUsersById = async (payload) => {
   try {
     if (payload !== "undefined") {
       let res = await axios.get(ADMIN_USERS_BYID + payload.id, {
+        headers: {
+          Authorization: `Bearer ${payload.access}`,
+        },
+      });
+      return res.data;
+    }
+  } catch (e) {
+    throw handler(e);
+  }
+};
+
+export const editUser = async (payload) => {
+  try {
+    if (payload !== "undefined") {
+      let res = await axios.post(EDIT_USER, payload.data, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },

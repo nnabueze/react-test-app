@@ -12,6 +12,7 @@ import UserPage from "./components/user/userPage";
 import UserDetail from "./components/user/userDetailPage";
 import ActiveUserPage from "./components/user/activeUserPage";
 import InactiveUserPage from "./components/user/inactiveUserPage";
+import EditUserPage from "./components/settings/EditUserPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 component={InactiveUserPage}
               />
               <ProtectedRoute path="/users" component={UserPage} />
+              <ProtectedRoute path="/user-edit" component={EditUserPage} />
               <ProtectedRoute path="/user-details" component={UserDetail} />
               <Route path="/:id" component={Login} />
               <Route path="" component={ErrorPage} />

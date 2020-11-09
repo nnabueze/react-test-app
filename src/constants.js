@@ -22,3 +22,4 @@ export const ADMIN_INACTIVE_USERS = `${BASE_URL}/gateway/GetInactiveUsers`;
 export const ADMIN_USERS_BYID = `${BASE_URL}/gateway/GetUserById/`;
 export const USER_ACTIVATE = `${BASE_URL}/gateway/ActivateUser`;
 export const DEACTIVATE_USER = `${BASE_URL}/gateway/DeActivateUser`;
+export const EDIT_USER = `${BASE_URL}/gateway/UpdateProfile`;

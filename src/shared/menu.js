@@ -159,10 +159,10 @@ const Menu = (props) => {
           </ul>
           <ul className="list-unstyled" data-link="applications">
             <li>
-              <a href="Apps.MediaLibrary.html">
+              <Link onClick={() => onLink("user-edit")}>
                 <i className="simple-icon-picture" />{" "}
                 <span className="d-inline-block">Edit Profile</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a href="Apps.Todo.List.html">
