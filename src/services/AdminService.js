@@ -11,7 +11,7 @@ export const getAllUsers = async (payload) => {
   console.log(payload);
   try {
     if (payload !== "undefined") {
-      let res = await axios.get(ADMIN_ALL_USERS, {
+      let res = await axios.get(ADMIN_ALL_USERS+`?PageNumber=${payload.pageIndex}&PageSize=${payload.pageSize}`, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },
@@ -27,7 +27,7 @@ export const getAllUsers = async (payload) => {
 export const getActiveUsers = async (payload) => {
   try {
     if (payload !== "undefined") {
-      let res = await axios.get(ADMIN_ACTIVE_USERS, {
+      let res = await axios.get(ADMIN_ACTIVE_USERS+`?PageNumber=${payload.pageIndex}&PageSize=${payload.pageSize}`, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },
@@ -42,7 +42,7 @@ export const getActiveUsers = async (payload) => {
 export const getInActiveUsers = async (payload) => {
   try {
     if (payload !== "undefined") {
-      let res = await axios.get(ADMIN_INACTIVE_USERS, {
+      let res = await axios.get(ADMIN_INACTIVE_USERS+`?PageNumber=${payload.pageIndex}&PageSize=${payload.pageSize}`, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },

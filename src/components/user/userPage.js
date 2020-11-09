@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Footer from "../../shared/footer";
 import Menu from "../../shared/menu";
 import TopNav from "../../shared/topNav";
+
 import AdminUserRegister from "./adminUserRegister";
 import LatestUserWidget from "./latestUserWidget";
 
@@ -33,23 +34,26 @@ const UserPage = () => {
                     </li>
                   </ol>
                 </nav>
-                <div className="top-right-button-container">
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary btn-lg top-right-button  mr-1"
-                    data-toggle="modal"
-                    data-backdrop="static"
-                    data-target="#exampleModal"
-                  >
-                    ADD NEW
-                  </button>
-                  <AdminUserRegister />
-                </div>
+                {
+                                //   <div className="top-right-button-container">
+                                //   <button
+                                //     type="button"
+                                //     className="btn btn-outline-primary btn-lg top-right-button  mr-1"
+                                //     data-toggle="modal"
+                                //     data-backdrop="static"
+                                //     data-target="#exampleModal"
+                                //   >
+                                //     ADD NEW
+                                //   </button>
+                                //   <AdminUserRegister />
+                                // </div>
+                }
               </div>
 
               <div className="separator mb-5" />
               <LatestUserWidget />
             </div>
+            
           </div>
         </div>
       </main>
