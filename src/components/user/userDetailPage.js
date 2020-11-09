@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { getUsersById } from "../../services/AdminService";
+import { activateUser, getUsersById } from "../../services/AdminService";
 import Footer from "../../shared/footer";
 import Menu from "../../shared/menu";
 import TopNav from "../../shared/topNav";
@@ -68,9 +68,26 @@ const UserDetail = (props) => {
       }
     }
   }, [token]);
+
   const back = () => {
     window.history.go(-1);
   };
+
+  const deActivateUserClick = async (id) => {
+    const activateParam = {
+      access: token,
+      data: {
+        userId: auth.data.id,
+        requestedUserId: id,
+      },
+    };
+
+    //console.log(activateParam);
+
+    const response = await activateUser(activateParam, false);
+    console.log("this is response: " + response);
+  };
+
   return (
     <div>
       <TopNav />
@@ -127,6 +144,7 @@ const UserDetail = (props) => {
                           {isActive ? (
                             <button
                               type="button"
+                              onClick={() => deActivateUserClick(id)}
                               className="btn btn-success btn-lg mb-4"
                             >
                               Active

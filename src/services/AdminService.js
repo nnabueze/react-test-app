@@ -4,6 +4,7 @@ import {
   ADMIN_ALL_USERS,
   ADMIN_INACTIVE_USERS,
   ADMIN_USERS_BYID,
+  USER_ACTIVATE,
 } from "../constants";
 
 export const getAllUsers = async (payload) => {
@@ -57,6 +58,29 @@ export const getUsersById = async (payload) => {
   try {
     if (payload !== "undefined") {
       let res = await axios.get(ADMIN_USERS_BYID + payload.id, {
+        headers: {
+          Authorization: `Bearer ${payload.access}`,
+        },
+      });
+      return res.data;
+    }
+  } catch (e) {
+    throw handler(e);
+  }
+};
+
+export const activateUser = async (payload, isActivate) => {
+  //console.log(isActivate);
+  try {
+    if (isActivate) {
+      let res = await axios.post(USER_ACTIVATE, payload.data, {
+        headers: {
+          Authorization: `Bearer ${payload.access}`,
+        },
+      });
+      return res.data;
+    } else {
+      let res = await axios.post(USER_ACTIVATE, payload.data, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },
