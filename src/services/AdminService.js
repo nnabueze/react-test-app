@@ -8,7 +8,6 @@ import {
 } from "../constants";
 
 export const getAllUsers = async (payload) => {
-  console.log(payload);
   try {
     if (payload !== "undefined") {
       let res = await axios.get(ADMIN_ALL_USERS, {
@@ -16,7 +15,6 @@ export const getAllUsers = async (payload) => {
           Authorization: `Bearer ${payload.access}`,
         },
       });
-      console.log(res);
       return res.data;
     }
   } catch (e) {

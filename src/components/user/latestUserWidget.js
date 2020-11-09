@@ -1,18 +1,41 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AdminContext } from "../../context/AdminContext";
+import { AuthContext } from "../../context/AuthContext";
+import { getAllUsers } from "../../services/AdminService";
 
 const LatestUserWidget = (props) => {
-  const { user } = useContext(AdminContext);
   const [itemList, setItemList] = useState([]);
 
+  const { auth } = useContext(AuthContext);
+  const [token, setToken] = useState("");
+
   useEffect(() => {
-    if (typeof user.data.data !== "undefined") {
-      setItemList([...user.data.data]);
-    } else {
-      setItemList([]);
+    if (auth !== null) {
+      if (auth.isAuth) {
+        setToken(auth.data.token);
+      } else {
+        window.location = "/";
+      }
     }
-  }, [user]);
+  }, [auth]);
+
+  useEffect(() => {
+    if (token !== "") {
+      const tokenParam = {
+        access: token,
+      };
+      async function callGetUser() {
+        const response = await getAllUsers(tokenParam);
+        setItemList([...response.data]);
+      }
+
+      try {
+        callGetUser();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }, [token]);
 
   const navigatePage = (id) => {
     window.location = `/user-details?id=${id}`;

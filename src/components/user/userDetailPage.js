@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { activateUser, getUsersById } from "../../services/AdminService";
+import AlertNotice from "../../shared/alert";
 import Footer from "../../shared/footer";
 import Menu from "../../shared/menu";
 import TopNav from "../../shared/topNav";
@@ -25,6 +26,9 @@ const UserDetail = (props) => {
   const [isActive, setIsActive] = useState("");
   const userId = { fontSize: 22 };
   const buttonDiv = { padding: 20 };
+  const [isError, setisError] = useState(false);
+  const [isNotError, setisNotError] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (auth !== null) {
@@ -82,13 +86,21 @@ const UserDetail = (props) => {
     const activateParam = {
       access: token,
       data: {
-        userId: auth.data.id,
-        requestedUserId: id,
+        userId: id,
+        requestedUserId: auth.data.id,
       },
     };
 
-    const response = await activateUser(activateParam, false);
-    console.log("this is response: " + response);
+    console.log(activateParam);
+
+    try {
+      const response = await activateUser(activateParam, false);
+      console.log("this is response: " + response);
+    } catch (e) {
+      console.log(e.message);
+      setisError(true);
+      setMessage(e.message);
+    }
   };
 
   const activateUserClick = async (id) => {
@@ -130,6 +142,11 @@ const UserDetail = (props) => {
               <div className="col-12 mb-4">
                 <div className="card">
                   <div className="card-body">
+                    <AlertNotice
+                      message={message}
+                      isNotError={isNotError}
+                      isError={isError}
+                    />
                     <div className="row">
                       <div
                         className="col-lg-6 col-md-6"
