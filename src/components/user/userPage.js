@@ -17,7 +17,7 @@ const UserPage = () => {
             <div className="col-12">
               <div className="mb-2">
                 <h1>Users Page</h1>
-                <nav
+                {/* <nav
                   className="breadcrumb-container d-none d-sm-block d-lg-inline-block"
                   aria-label="breadcrumb"
                 >
@@ -32,7 +32,7 @@ const UserPage = () => {
                       Add User
                     </li>
                   </ol>
-                </nav>
+                </nav> */}
                 <div className="top-right-button-container">
                   <button
                     type="button"

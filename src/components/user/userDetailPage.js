@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { activateUser, getUsersById } from "../../services/AdminService";
 import Footer from "../../shared/footer";
@@ -73,6 +74,10 @@ const UserDetail = (props) => {
     window.history.go(-1);
   };
 
+  const redirectUser = () => {
+    window.location = "/users";
+  };
+
   const deActivateUserClick = async (id) => {
     const activateParam = {
       access: token,
@@ -82,9 +87,20 @@ const UserDetail = (props) => {
       },
     };
 
-    //console.log(activateParam);
-
     const response = await activateUser(activateParam, false);
+    console.log("this is response: " + response);
+  };
+
+  const activateUserClick = async (id) => {
+    const activateParam = {
+      access: token,
+      data: {
+        userId: id,
+        requestedUserId: auth.data.id,
+      },
+    };
+
+    const response = await activateUser(activateParam, true);
     console.log("this is response: " + response);
   };
 
@@ -103,13 +119,10 @@ const UserDetail = (props) => {
               >
                 <ol className="breadcrumb pt-0">
                   <li className="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <Link onClick={redirectUser}>Users</Link>
                   </li>
                   <li className="breadcrumb-item">
-                    <a href="#">Library</a>
-                  </li>
-                  <li className="breadcrumb-item active" aria-current="page">
-                    Data
+                    <a href="#">Details</a>
                   </li>
                 </ol>
               </nav>
@@ -152,6 +165,7 @@ const UserDetail = (props) => {
                           ) : (
                             <button
                               type="button"
+                              onClick={() => activateUserClick(id)}
                               className="btn btn-danger btn-lg mb-4"
                             >
                               InActive

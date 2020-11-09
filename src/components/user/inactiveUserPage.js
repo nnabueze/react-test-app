@@ -17,7 +17,7 @@ const InactiveUserPage = () => {
             <div className="col-12">
               <div className="mb-2">
                 <h1>Inactive Users Page</h1>
-                <nav
+                {/* <nav
                   className="breadcrumb-container d-none d-sm-block d-lg-inline-block"
                   aria-label="breadcrumb"
                 >
@@ -32,7 +32,7 @@ const InactiveUserPage = () => {
                       Add User
                     </li>
                   </ol>
-                </nav>
+                </nav> */}
               </div>
 
               <div className="separator mb-5" />
