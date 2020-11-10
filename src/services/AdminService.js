@@ -4,6 +4,7 @@ import {
   ADMIN_ALL_USERS,
   ADMIN_INACTIVE_USERS,
   ADMIN_USERS_BYID,
+  CHANGE_PASSWORD,
   EDIT_USER,
   USER_ACTIVATE,
 } from "../constants";
@@ -11,11 +12,15 @@ import {
 export const getAllUsers = async (payload) => {
   try {
     if (payload !== "undefined") {
-      let res = await axios.get(ADMIN_ALL_USERS, {
-        headers: {
-          Authorization: `Bearer ${payload.access}`,
-        },
-      });
+      let res = await axios.get(
+        ADMIN_ALL_USERS +
+          `?PageNumber=${payload.pageIndex}&PageSize=${payload.pageSize}`,
+        {
+          headers: {
+            Authorization: `Bearer ${payload.access}`,
+          },
+        }
+      );
       return res.data;
     }
   } catch (e) {
@@ -26,11 +31,15 @@ export const getAllUsers = async (payload) => {
 export const getActiveUsers = async (payload) => {
   try {
     if (payload !== "undefined") {
-      let res = await axios.get(ADMIN_ACTIVE_USERS, {
-        headers: {
-          Authorization: `Bearer ${payload.access}`,
-        },
-      });
+      let res = await axios.get(
+        ADMIN_ACTIVE_USERS +
+          `?PageNumber=${payload.pageIndex}&PageSize=${payload.pageSize}`,
+        {
+          headers: {
+            Authorization: `Bearer ${payload.access}`,
+          },
+        }
+      );
       return res.data;
     }
   } catch (e) {
@@ -41,11 +50,15 @@ export const getActiveUsers = async (payload) => {
 export const getInActiveUsers = async (payload) => {
   try {
     if (payload !== "undefined") {
-      let res = await axios.get(ADMIN_INACTIVE_USERS, {
-        headers: {
-          Authorization: `Bearer ${payload.access}`,
-        },
-      });
+      let res = await axios.get(
+        ADMIN_INACTIVE_USERS +
+          `?PageNumber=${payload.pageIndex}&PageSize=${payload.pageSize}`,
+        {
+          headers: {
+            Authorization: `Bearer ${payload.access}`,
+          },
+        }
+      );
       return res.data;
     }
   } catch (e) {
@@ -72,6 +85,21 @@ export const editUser = async (payload) => {
   try {
     if (payload !== "undefined") {
       let res = await axios.post(EDIT_USER, payload.data, {
+        headers: {
+          Authorization: `Bearer ${payload.access}`,
+        },
+      });
+      return res.data;
+    }
+  } catch (e) {
+    throw handler(e);
+  }
+};
+
+export const password = async (payload) => {
+  try {
+    if (payload !== "undefined") {
+      let res = await axios.post(CHANGE_PASSWORD, payload.data, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },

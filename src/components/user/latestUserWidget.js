@@ -2,11 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { getAllUsers } from "../../services/AdminService";
+import { AdminContext } from "../../context/AdminContext";
+import ErcasUserTable from "../table/ErcasReactTable";
 
 const LatestUserWidget = (props) => {
+  const { auth } = useContext(AuthContext);
+  const { user } = useContext(AdminContext);
   const [itemList, setItemList] = useState([]);
 
-  const { auth } = useContext(AuthContext);
+  //const { auth } = useContext(AuthContext);
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -43,7 +47,7 @@ const LatestUserWidget = (props) => {
 
   return (
     <div className="col-xl-12 col-lg-12 mb-4">
-      <div className="card h-100">
+      {/* <div className="card h-100">
         <div className="card-body">
           <table
             className="data-table data-table-standard responsive nowrap"
@@ -98,7 +102,7 @@ const LatestUserWidget = (props) => {
                         ></div>
                         {/* <div style={{ fontSize: 10 }} className="class-name">
                         view
-                      </div> */}
+                      </div> }
                       </div>
                     </Link>
                   </td>
@@ -107,7 +111,17 @@ const LatestUserWidget = (props) => {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
+      <ErcasUserTable
+        title={"Users"}
+        tokenParam={auth.data.token}
+        showAdd
+        showDelete
+        showEdit
+        showView
+        showSearch
+        defaultPageSize={20}
+      />
     </div>
   );
 };

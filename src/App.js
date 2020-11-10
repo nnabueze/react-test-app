@@ -13,6 +13,8 @@ import UserDetail from "./components/user/userDetailPage";
 import ActiveUserPage from "./components/user/activeUserPage";
 import InactiveUserPage from "./components/user/inactiveUserPage";
 import EditUserPage from "./components/settings/EditUserPage";
+import ChangePassword from "./components/settings/changePassword";
+import PasswordChange from "./components/settings/changePassword";
 
 function App() {
   return (
@@ -31,6 +33,10 @@ function App() {
               />
               <ProtectedRoute path="/users" component={UserPage} />
               <ProtectedRoute path="/user-edit" component={EditUserPage} />
+              <ProtectedRoute
+                path="/password-change"
+                component={PasswordChange}
+              />
               <ProtectedRoute path="/user-details" component={UserDetail} />
               <Route path="/:id" component={Login} />
               <Route path="" component={ErrorPage} />

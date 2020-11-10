@@ -33,10 +33,10 @@ const Menu = (props) => {
         <div className="scroll">
           <ul className="list-unstyled">
             <li className="active">
-              <a href="#dashboard">
+              <Link onClick={() => onLink("dashboard")}>
                 <i className="iconsminds-shop-4" />
                 <span>Dashboards</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#layouts">
@@ -53,32 +53,14 @@ const Menu = (props) => {
       </div>
       <div className="sub-menu">
         <div className="scroll">
-          <ul className="list-unstyled" data-link="dashboard">
+          {/* <ul className="list-unstyled" data-link="dashboard">
             <li className="active">
               <Link onClick={() => onLink("dashboard")}>
                 <i className="simple-icon-rocket" />{" "}
                 <span className="d-inline-block">Home</span>
               </Link>
             </li>
-            <li>
-              <Link onClick={() => ercas(ERCASPAY)}>
-                <i className="simple-icon-pie-chart" />{" "}
-                <span className="d-inline-block">ErcasPay</span>
-              </Link>
-            </li>
-            <li>
-              <Link onClick={() => ercas(ERCASCOLLECT)}>
-                <i className="simple-icon-basket-loaded" />{" "}
-                <span className="d-inline-block">ErcasCollect</span>
-              </Link>
-            </li>
-            <li>
-              <Link onClick={() => ercas(ERCASSERVICE)}>
-                <i className="simple-icon-doc" />{" "}
-                <span className="d-inline-block">Ercas Connect</span>
-              </Link>
-            </li>
-          </ul>
+          </ul> */}
           <ul className="list-unstyled" data-link="layouts" id="layouts">
             <li>
               <a
@@ -97,19 +79,7 @@ const Menu = (props) => {
                   <li>
                     <Link onClick={() => onLink("users")}>
                       <i className="simple-icon-user-following" />{" "}
-                      <span className="d-inline-block">View Users</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link onClick={() => onLink("active-users")}>
-                      <i className="simple-icon-user-follow" />{" "}
-                      <span className="d-inline-block">Active Users</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link onClick={() => onLink("inactive-users")}>
-                      <i className="simple-icon-user-unfollow" />{" "}
-                      <span className="d-inline-block">Inactive Users</span>
+                      <span className="d-inline-block">Users</span>
                     </Link>
                   </li>
                 </ul>
@@ -165,16 +135,10 @@ const Menu = (props) => {
               </Link>
             </li>
             <li>
-              <a href="Apps.Todo.List.html">
+              <Link onClick={() => onLink("password-change")}>
                 <i className="simple-icon-check" />{" "}
                 <span className="d-inline-block">Change Password</span>
-              </a>
-            </li>
-            <li>
-              <a href="Apps.Survey.List.html">
-                <i className="simple-icon-calculator" />{" "}
-                <span className="d-inline-block">FAQ</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -7,6 +7,7 @@ import Footer from "../../shared/footer";
 import Menu from "../../shared/menu";
 import TopNav from "../../shared/topNav";
 import UserDetailWidget from "./userDetailWidget";
+import moment from "moment";
 
 const UserDetail = (props) => {
   const { auth } = useContext(AuthContext);
@@ -218,11 +219,11 @@ const UserDetail = (props) => {
                     />
                     <UserDetailWidget
                       title1="Added Date"
-                      value1={createdDate}
+                      value1={moment(createdDate).format("DD/MM/yy")}
                       title2="Last Login"
-                      value2={lastLoginDate}
+                      value2={moment(lastLoginDate).format("DD/MM/yy")}
                       title3="Last Update"
-                      value3={lastUpdatedDate}
+                      value3={moment(lastUpdatedDate).format("DD/MM/yy")}
                     />
                     <div className="row" style={buttonDiv}>
                       <div className="col-lg-6 col-md-6">
