@@ -57,7 +57,7 @@ const PasswordChange = () => {
           <div className="row">
             <div className="col-12">
               <div className="mb-2">
-                <h1>Edit User</h1>
+                <h1>Change Password</h1>
               </div>
               <div className="separator mb-5" />
 
@@ -75,7 +75,7 @@ const PasswordChange = () => {
                             <TextInput
                               name={"password"}
                               type="password"
-                              label={"Passord"}
+                              label={"New Passord"}
                             />
                             <TextInput
                               name={"confirmpassword"}

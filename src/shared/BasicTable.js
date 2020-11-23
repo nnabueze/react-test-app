@@ -2,6 +2,7 @@ import React from "react";
 import { useMemo } from "react";
 import { useTable } from "react-table";
 import { COLUMNS } from "../components/user/userColumn";
+import "./table.css";
 
 const BasicTable = ({ passedData }) => {
   const columns = useMemo(() => COLUMNS, []);
@@ -30,9 +31,18 @@ const BasicTable = ({ passedData }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          <tr>
-            <td></td>
-          </tr>
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  return (
+                    <td {...cell.getCellProps()}>{cell.render("cell")}</td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </>

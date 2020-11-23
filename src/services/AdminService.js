@@ -12,16 +12,25 @@ import {
 export const getAllUsers = async (payload) => {
   try {
     if (payload !== "undefined") {
-      let res = await axios.get(
-        ADMIN_ALL_USERS +
-          `?PageNumber=${payload.pageIndex}&PageSize=${payload.pageSize}`,
-        {
+      if (payload.pageSize != null && payload.pageIndex) {
+        let res = await axios.get(
+          ADMIN_ALL_USERS +
+            `?PageNumber=${payload.pageIndex}&PageSize=${payload.pageSize}`,
+          {
+            headers: {
+              Authorization: `Bearer ${payload.access}`,
+            },
+          }
+        );
+        return res.data;
+      } else {
+        let res = await axios.get(ADMIN_ALL_USERS, {
           headers: {
             Authorization: `Bearer ${payload.access}`,
           },
-        }
-      );
-      return res.data;
+        });
+        return res.data;
+      }
     }
   } catch (e) {
     throw handler(e);
