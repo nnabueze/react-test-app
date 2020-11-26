@@ -30,6 +30,10 @@ const TopNav = (props) => {
     Cookies.remove("user", { domain: ".ercas.ng" });
   };
 
+  const onLink = (route) => {
+    window.location = `/${route}`;
+  };
+
   return (
     <nav className="navbar fixed-top">
       <div className="d-flex align-items-center navbar-left">
@@ -257,9 +261,12 @@ const TopNav = (props) => {
             </span>
           </button>
           <div className="dropdown-menu dropdown-menu-right mt-3">
-            <Link className="dropdown-item" to="/dashboard">
+            <button
+              className="dropdown-item"
+              onClick={() => onLink("user-edit")}
+            >
               Account
-            </Link>
+            </button>
             <button onClick={logout} className="dropdown-item">
               Sign out
             </button>

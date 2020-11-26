@@ -225,7 +225,7 @@ function ErcasTable({
                               }}
                             >
                               <i
-                                className={"simple-icon-trash"}
+                                className={"simple-icon-settings"}
                                 style={{ fontSize: "18px" }}
                               ></i>
                             </a>
@@ -310,7 +310,7 @@ const ErcasUserTable = ({
   showDelete = false,
   showView = true,
   showFilterBy = true,
-  showOrderBy = true,
+  showOrderBy = false,
   showRefresh = true,
   showAdd = false,
   pagination = true,
@@ -411,7 +411,11 @@ const ErcasUserTable = ({
 
   //handle view single
   const handleEdit = async (id) => {
-    window.location = `/user-edit?id=${id}`;
+    window.location = `/admin-user-edit?id=${id}`;
+  };
+
+  const handleRole = async (id) => {
+    alert(id + "");
   };
 
   //handle view more
@@ -637,6 +641,7 @@ const ErcasUserTable = ({
             data={data}
             onView={handleView}
             onEdit={handleEdit}
+            onDelete={handleRole}
             onSearch={handleSearch}
             fetchData={fetchData}
             onViewMore={handleViewMore}

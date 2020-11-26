@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   ADMIN_ACTIVE_USERS,
   ADMIN_ALL_USERS,
+  ADMIN_EDIT_USER,
   ADMIN_INACTIVE_USERS,
   ADMIN_USERS_BYID,
   CHANGE_PASSWORD,
@@ -93,7 +94,7 @@ export const getUsersById = async (payload) => {
 export const editUser = async (payload) => {
   try {
     if (payload !== "undefined") {
-      let res = await axios.post(EDIT_USER, payload.data, {
+      let res = await axios.post(ADMIN_EDIT_USER, payload.data, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },
@@ -144,5 +145,9 @@ export const activateUser = async (payload, isActivate) => {
 };
 
 export const handler = (err) => {
-  return err.response.data;
+  if (typeof err.response === "undefined") {
+    return null;
+  } else {
+    return err.response.data;
+  }
 };

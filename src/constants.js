@@ -23,4 +23,5 @@ export const ADMIN_USERS_BYID = `${BASE_URL}/gateway/GetUserById/`;
 export const USER_ACTIVATE = `${BASE_URL}/gateway/ActivateUser`;
 export const DEACTIVATE_USER = `${BASE_URL}/gateway/DeActivateUser`;
 export const EDIT_USER = `${BASE_URL}/gateway/UpdateProfile`;
+export const ADMIN_EDIT_USER = `${BASE_URL}/gateway/UpdateUser`;
 export const CHANGE_PASSWORD = `${BASE_URL}/gateway/ChangeMyPassword`;

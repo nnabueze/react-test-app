@@ -3,7 +3,6 @@ import { useMemo } from "react";
 import { useTable } from "react-table";
 import { COLUMNS } from "../components/user/userColumn";
 import MOCK_DATA from "../MOCK_DATA.json";
-import "./table.css";
 
 const BasicTable = ({ passedData }) => {
   console.log(MOCK_DATA);
