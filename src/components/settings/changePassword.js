@@ -6,20 +6,18 @@ import TextInput from "../../shared/textInput";
 import TopNav from "../../shared/topNav";
 import * as Yup from "yup";
 import { AuthContext } from "../../context/AuthContext";
-import { password } from "../../services/AdminService";
+import { changeMyPassword } from "../../services/AdminService";
+import AlertNotice from "../../shared/alert";
 
-const signupScheme = Yup.object().shape({
-  confirmpassword: Yup.string().required(),
-  password: Yup.string().required(),
-});
-
-const initialValue = {
-  password: "",
-  confirmpassword: "",
-};
 const PasswordChange = () => {
   const { auth } = useContext(AuthContext);
   const [token, setToken] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [isError, setisError] = useState(false);
+  const [isNotError, setisNotError] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
 
   useEffect(() => {
     if (auth !== null) {
@@ -32,20 +30,36 @@ const PasswordChange = () => {
   }, [auth]);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    setisLoading(true);
+    if (password !== confirmPassword) {
+      setisLoading(false);
+      setMessage("Password Mismatch!");
+      setisError(true);
+      return;
+    }
     const param = {
       access: token,
       data: {
         requestedByUserId: auth.data.id,
         userId: auth.data.id,
-        password: e.password,
-        passwordConfirmation: e.email,
+        password: password,
+        passwordConfirmation: confirmPassword,
       },
     };
     try {
-      const response = await password(param);
-      console.log(response);
+      const response = await changeMyPassword(param);
+      if (response) {
+        setisLoading(false);
+        setMessage("Password Changed Successfully!");
+        setisNotError(true);
+        setPassword("");
+        setConfirmPassword("");
+      }
     } catch (e) {
-      console.log(e);
+      setisLoading(false);
+      setMessage(e.title);
+      setisError(true);
     }
   };
   return (
@@ -63,38 +77,58 @@ const PasswordChange = () => {
 
               <div className="col-xl-12 col-lg-12 mb-4">
                 <div className="card h-100">
+                  <div style={{ padding: 10 }}>
+                    <AlertNotice
+                      message={message}
+                      isNotError={isNotError}
+                      isError={isError}
+                    />
+                  </div>
                   <div className="card-body">
-                    <Formik
-                      initialValues={initialValue}
-                      validationSchema={signupScheme}
-                      onSubmit={(data) => handleSubmit(data)}
-                    >
-                      {({ handleSubmit }) => {
-                        return (
-                          <form onSubmit={handleSubmit}>
-                            <TextInput
-                              name={"password"}
-                              type="password"
-                              label={"New Passord"}
-                            />
-                            <TextInput
-                              name={"confirmpassword"}
-                              type="password"
-                              label={"Confirm Passord"}
-                            />
+                    <form onSubmit={handleSubmit}>
+                      <label className="form-group has-float-label mb-4">
+                        <input
+                          style={{
+                            paddingTop: 30,
+                            paddingBottom: 30,
+                          }}
+                          className="form-control"
+                          name="password"
+                          type="password"
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <span>New Passord</span>
+                      </label>
+                      <label className="form-group has-float-label mb-4">
+                        <input
+                          style={{
+                            paddingTop: 30,
+                            paddingBottom: 30,
+                          }}
+                          className="form-control"
+                          name="confirmPassword"
+                          type="password"
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                        <span>Confirm Passord</span>
+                      </label>
 
-                            <div className="d-flex justify-content-end align-items-center">
-                              <button
-                                className="btn btn-primary btn-lg btn-shadow"
-                                type="submit"
-                              >
-                                <span>SUBMIT</span>
-                              </button>
-                            </div>
-                          </form>
-                        );
-                      }}
-                    </Formik>
+                      <div className="d-flex justify-content-end align-items-center">
+                        <button
+                          className="btn btn-primary btn-lg btn-shadow"
+                          type="submit"
+                        >
+                          {isLoading && (
+                            <i
+                              className="fa fa-refresh fa-spin"
+                              style={{ marginRight: "5px", color: "white" }}
+                            />
+                          )}
+                          {isLoading && <span>&nbsp;&nbsp;WAITING</span>}
+                          {!isLoading && <span>SUBMIT</span>}
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

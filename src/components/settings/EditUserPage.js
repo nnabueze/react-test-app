@@ -76,7 +76,6 @@ const EditUserPage = () => {
     };
     try {
       const response = await editUser(param);
-      console.log(`test: ${response.id}`);
       if (response) {
         setisLoading(false);
         setMessage("Edited Successfully!");

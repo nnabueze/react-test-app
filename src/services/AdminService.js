@@ -105,7 +105,7 @@ export const editUser = async (payload) => {
   }
 };
 
-export const password = async (payload) => {
+export const changeMyPassword = async (payload) => {
   try {
     if (payload !== "undefined") {
       let res = await axios.post(CHANGE_PASSWORD, payload.data, {
