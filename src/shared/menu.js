@@ -82,6 +82,12 @@ const Menu = (props) => {
                       <span className="d-inline-block">Users</span>
                     </Link>
                   </li>
+                  <li>
+                    <Link onClick={() => onLink("report")}>
+                      <i className="simple-icon-user-following" />{" "}
+                      <span className="d-inline-block">Report</span>
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </li>

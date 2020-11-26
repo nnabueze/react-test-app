@@ -2,9 +2,12 @@ import React from "react";
 import { useMemo } from "react";
 import { useTable } from "react-table";
 import { COLUMNS } from "../components/user/userColumn";
+import MOCK_DATA from "../MOCK_DATA.json";
 import "./table.css";
 
 const BasicTable = ({ passedData }) => {
+  console.log(MOCK_DATA);
+  console.log(passedData);
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => passedData, []);
   const tableInstance = useTable({
@@ -19,7 +22,7 @@ const BasicTable = ({ passedData }) => {
     prepareRow,
   } = tableInstance;
   return (
-    <>
+    <div>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -37,7 +40,7 @@ const BasicTable = ({ passedData }) => {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("cell")}</td>
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
                 })}
               </tr>
@@ -45,7 +48,7 @@ const BasicTable = ({ passedData }) => {
           })}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 
