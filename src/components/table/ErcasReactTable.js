@@ -415,7 +415,7 @@ const ErcasUserTable = ({
   };
 
   const handleRole = async (id) => {
-    alert(id + "");
+    window.location = `/change-role?id=${id}`;
   };
 
   //handle view more

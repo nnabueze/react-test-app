@@ -6,6 +6,7 @@ import {
   ADMIN_INACTIVE_USERS,
   ADMIN_USERS_BYID,
   CHANGE_PASSWORD,
+  CHANGE_ROLE,
   EDIT_USER,
   USER_ACTIVATE,
 } from "../constants";
@@ -95,6 +96,21 @@ export const editUser = async (payload) => {
   try {
     if (payload !== "undefined") {
       let res = await axios.post(ADMIN_EDIT_USER, payload.data, {
+        headers: {
+          Authorization: `Bearer ${payload.access}`,
+        },
+      });
+      return res.data;
+    }
+  } catch (e) {
+    throw handler(e);
+  }
+};
+
+export const changeRole = async (payload) => {
+  try {
+    if (payload !== "undefined") {
+      let res = await axios.post(CHANGE_ROLE, payload.data, {
         headers: {
           Authorization: `Bearer ${payload.access}`,
         },

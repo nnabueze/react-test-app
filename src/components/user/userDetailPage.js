@@ -210,11 +210,11 @@ const UserDetail = (props) => {
                       value3={role}
                     />
                     <UserDetailWidget
-                      title1="IsEmailConfirmed"
+                      title1="Email Confirmed"
                       value1={isEmailConfirmed ? "Yes" : "No"}
-                      title2="IsPhoneConfirmed"
+                      title2="Phone Confirmed"
                       value2={isPhoneConfirmed ? "Yes" : "No"}
-                      title3="IsActive"
+                      title3="Active"
                       value3={isActive ? "Yes" : "No"}
                     />
                     <UserDetailWidget

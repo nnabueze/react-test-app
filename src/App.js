@@ -17,6 +17,7 @@ import ChangePassword from "./components/settings/changePassword";
 import PasswordChange from "./components/settings/changePassword";
 import Report from "./components/user/reportPage";
 import AdminUserEdit from "./components/user/adminUserEdit";
+import ChangeRolePage from "./components/user/changeRolePage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <ProtectedRoute path="/users" component={UserPage} />
               <ProtectedRoute path="/report" component={Report} />
               <ProtectedRoute path="/user-edit" component={EditUserPage} />
+              <ProtectedRoute path="/change-role" component={ChangeRolePage} />
               <ProtectedRoute
                 path="/admin-user-edit"
                 component={AdminUserEdit}
