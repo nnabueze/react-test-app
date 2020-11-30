@@ -13,6 +13,7 @@ import {
   ERCASCOLLECT_URL,
   ERCASSERVICE_URL,
   ERCASSERVICE,
+  ERCAS_HOME_URL,
 } from "../../constants";
 import TextInput from "../../shared/textInput";
 
@@ -51,7 +52,7 @@ const Login = (props) => {
         email: e.email,
         password: e.password,
       });
-
+      console.log(response);
       responseDisplay(response);
     } catch (e) {
       setisLoading(false);
@@ -65,6 +66,11 @@ const Login = (props) => {
       setisLoading(false);
       handleSetCookie(response);
       dispatch(AuthActionSuccess(response));
+      // if (auth.data.role === "User") {
+      //   window.location = ERCAS_HOME_URL;
+      // } else {
+      //   pageRedirect();
+      // }
       pageRedirect();
     } else {
       setisLoading(false);
