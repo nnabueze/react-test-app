@@ -12,6 +12,7 @@ import {
 } from "../constants";
 
 export const getAllUsers = async (payload) => {
+  console.log(`Bearer ${payload.access}`);
   try {
     if (payload !== "undefined") {
       if (payload.pageSize != null && payload.pageIndex) {

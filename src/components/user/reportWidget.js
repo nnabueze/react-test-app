@@ -39,7 +39,7 @@ const ReportWidget = (props) => {
   const navigatePage = (id) => {
     window.location = `/user-details?id=${id}`;
   };
-  return <BasicTable passedData={users} />;
+  return <BasicTable token={auth.data.token} />;
 };
 
 export default ReportWidget;

@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useMemo } from "react";
 import { useTable } from "react-table";
 import { COLUMNS } from "../components/user/userColumn";
-import MOCK_DATA from "../MOCK_DATA.json";
+import { getAllUsers } from "../services/AdminService";
 
-const BasicTable = ({ passedData }) => {
-  console.log(MOCK_DATA);
-  console.log(passedData);
+const BasicTable = ({ token }) => {
+  const [dataList, setDataList] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = useCallback(async () => {
+    const response = await getAllUsers({
+      access: token,
+    });
+    setDataList(response?.data ?? []);
+  }, []);
+
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => passedData, []);
   const tableInstance = useTable({
     columns,
-    data,
+    data: dataList,
   });
   const {
     getTableProps,
@@ -22,7 +32,7 @@ const BasicTable = ({ passedData }) => {
   } = tableInstance;
   return (
     <div>
-      <table {...getTableProps()}>
+      <table class="table table-bordered table-hover" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
