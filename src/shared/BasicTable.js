@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useMemo } from "react";
-import { useTable } from "react-table";
+import { useSortBy, useTable } from "react-table";
 import { COLUMNS } from "../components/user/userColumn";
 import { getAllUsers } from "../services/AdminService";
 
@@ -19,10 +19,13 @@ const BasicTable = ({ token }) => {
   }, []);
 
   const columns = useMemo(() => COLUMNS, []);
-  const tableInstance = useTable({
-    columns,
-    data: dataList,
-  });
+  const tableInstance = useTable(
+    {
+      columns,
+      data: dataList,
+    },
+    useSortBy
+  );
   const {
     getTableProps,
     getTableBodyProps,
@@ -37,7 +40,20 @@ const BasicTable = ({ token }) => {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render("Header")}
+                  <span>
+                    {column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <i class="simple-icon-arrow-down"></i>
+                      ) : (
+                        <i class="simple-icon-arrow-up"></i>
+                      )
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                </th>
               ))}
             </tr>
           ))}
