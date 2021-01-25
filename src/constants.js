@@ -9,12 +9,13 @@ export const ERCASPAY = "ercaspay";
 export const ERCASSERVICE = "ercasservice";
 export const ERCASCOLLECT = "ercascollect";
 
-export const ERCASPAY_URL = "http://pay_v2.ercas.ng/";
-export const ERCASCOLLECT_URL = "http://collect.ercas.ng/";
-export const ERCASSERVICE_URL = "http://self.ercas.ng/";
+export const ERCASPAY_URL = "https://paynew.ercas.ng/";
+export const ERCASCOLLECT_URL = "https://collect.ercas.ng/";
+export const ERCASSERVICE_URL = "https://flex.ercas.ng/";
 export const ERCAS_HOME_URL = "https://ercas.com.ng/";
 
-export const BASE_URL = "http://35.193.238.146";
+//export const BASE_URL = "http://35.193.238.146";
+export const BASE_URL = " https://api.ercas.ng";
 export const ADMIN_LOGIN_URL = `${BASE_URL}/gateway/authenticate`;
 export const ACCOUNT_SIGNUP_URL = `${BASE_URL}/gateway/register`;
 export const ADMIN_ALL_USERS = `${BASE_URL}/gateway/GetAllUsers`;
