@@ -15,6 +15,7 @@ export const ERCASSERVICE_URL = "https://flex.ercas.ng/";
 export const ERCAS_HOME_URL = "https://ercas.com.ng/";
 
 //export const BASE_URL = "http://35.193.238.146";
+//testing
 export const BASE_URL = " https://api.ercas.ng";
 export const ADMIN_LOGIN_URL = `${BASE_URL}/gateway/authenticate`;
 export const ACCOUNT_SIGNUP_URL = `${BASE_URL}/gateway/register`;
