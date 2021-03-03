@@ -52,7 +52,6 @@ const Login = (props) => {
         email: e.email,
         password: e.password,
       });
-      console.log(response);
       responseDisplay(response);
     } catch (e) {
       setisLoading(false);

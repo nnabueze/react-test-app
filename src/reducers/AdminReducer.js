@@ -9,7 +9,6 @@ export const AdminReducer = (state, action) => {
         data: {},
       };
     case GETALLUSER:
-      console.log(action.payload);
       return {
         ...state,
         isError: false,
