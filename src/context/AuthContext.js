@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 const AuthContextProvider = (props) => {
   const [auth, dispatch] = useReducer(AuthReducer, {}, () => {
     //const data = localStorage.getItem("auth");
-    const data = Cookies.get("log");
+    const data = Cookies.get("user");
     try {
       return JSON.parse(data);
     } catch (e) {
@@ -19,10 +19,10 @@ const AuthContextProvider = (props) => {
     //localStorage.setItem("auth", JSON.stringify(auth));
 
     if (auth.isAuth === false) {
-      Cookies.remove("log");
+      Cookies.remove("user");
     } else {
       const user = JSON.stringify(auth);
-      Cookies.set("log", user);
+      Cookies.set("user", user, { domain: ".ercas.ng" });
     }
   }, [auth]);
 

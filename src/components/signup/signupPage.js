@@ -69,10 +69,8 @@ const SignupPage = (props) => {
             <div className="col-12 col-md-10 mx-auto my-auto">
               <div className="card auth-card">
                 <div className="position-relative image-side ">
-                  <p className=" text-white h2">Ercas Single Sign-On</p>
+                  <p className=" text-white h2">Ercas SSO</p>
                   <p className="white mb-0">
-                    Please use this form to register.
-                    <br />
                     <Link to="/" className="white">
                       If you are a member, please login .
                     </Link>

@@ -63,7 +63,7 @@ const Login = (props) => {
   const responseDisplay = (response) => {
     if (typeof response !== "undefined") {
       setisLoading(false);
-      handleSetCookie(response);
+      //handleSetCookie(response);
       dispatch(AuthActionSuccess(response));
       // if (auth.data.role === "User") {
       //   window.location = ERCAS_HOME_URL;
@@ -127,11 +127,9 @@ const Login = (props) => {
             <div className="col-12 col-md-10 mx-auto my-auto">
               <div className="card auth-card">
                 <div className="position-relative image-side ">
-                  <p className=" text-white h2">Ercas Single Sign-On</p>
+                  <p className=" text-white h2">Ercas SSO</p>
                   <p className="white mb-0">
                     <Link to="/register" className="white">
-                      Please use your credentials to login.
-                      <br />
                       If you are not a member, please register
                     </Link>{" "}
                     .

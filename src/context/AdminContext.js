@@ -16,6 +16,7 @@ const AdminContextProvider = (props) => {
       return {};
     }
   });
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
     //const userDetail = JSON.stringify(user);
